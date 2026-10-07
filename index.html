@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Recetario de Cocina</title>
+    <!-- Google Fonts & Tailwind CSS for fast, clean styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800 min-h-screen flex flex-col">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-stone-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-2">
+                <span class="text-3xl">🍲</span>
+                <h1 class="text-2xl font-bold text-stone-900">Mi Recetario</h1>
+            </div>
+            <!-- Barra de Búsqueda -->
+            <div class="w-full sm:w-72">
+                <input type="text" id="searchInput" placeholder="Buscar receta o ingrediente..." 
+                    class="w-full px-4 py-2 text-sm bg-stone-100 border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
+        
+        <!-- Categorías / Filtros Rápidos -->
+        <div class="flex flex-wrap gap-2 mb-8 justify-center" id="categoryFilters">
+            <button onclick="filterCategory('todos')" class="category-btn px-4 py-2 text-sm font-medium rounded-full bg-stone-900 text-white transition">Todas</button>
+            <button onclick="filterCategory('principal')" class="category-btn px-4 py-2 text-sm font-medium rounded-full bg-stone-200 text-stone-700 hover:bg-stone-300 transition">Platos Principales</button>
+            <button onclick="filterCategory('postre')" class="category-btn px-4 py-2 text-sm font-medium rounded-full bg-stone-200 text-stone-700 hover:bg-stone-300 transition">Postres</button>
+            <button onclick="filterCategory('rapido')" class="category-btn px-4 py-2 text-sm font-medium rounded-full bg-stone-200 text-stone-700 hover:bg-stone-300 transition">Rápidas</button>
+        </div>
+
+        <!-- Grid de Recetas -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="recipesGrid">
+            
+            <!-- Receta 1 -->
+            <div class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="principal" data-title="pasta carbonara autentica">
+                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=600&q=80" alt="Pasta Carbonara" class="h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">Principal</span>
+                        <span class="text-xs text-stone-500">⏱️ 20 mins</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-stone-900">Pasta Carbonara Auténtica</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">Receta tradicional italiana sin crema de leche. Únicamente yemas de huevo, queso Pecorino Romano y guanciale.</p>
+                    <button onclick="openModal('carbonara')" class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-xl hover:bg-stone-800 transition text-sm">Ver Receta</button>
+                </div>
+            </div>
+
+            <!-- Receta 2 -->
+            <div class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="postre" data-title="tarta de queso cremosa">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80" alt="Tarta de Queso" class="h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-md">Postre</span>
+                        <span class="text-xs text-stone-500">⏱️ 45 mins</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-stone-900">Tarta de Queso Cremosa</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">Una tarta de queso al horno ultra cremosa, con centro suave y una costra dorada irresistible.</p>
+                    <button onclick="openModal('cheesecake')" class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-xl hover:bg-stone-800 transition text-sm">Ver Receta</button>
+                </div>
+            </div>
+
+            <!-- Receta 3 -->
+            <div class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition flex flex-col" data-category="rapido" data-title="ensalada mediterranea de garbanzos">
+                <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" alt="Ensalada" class="h-48 w-full object-cover">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Rápida</span>
+                        <span class="text-xs text-stone-500">⏱️ 10 mins</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-stone-900">Ensalada de Garbanzos</h3>
+                    <p class="text-stone-600 text-sm mb-4 flex-grow">Refrescante, nutritiva y llena de sabor. Ideal para un almuerzo ligero y lleno de proteínas vegetales.</p>
+                    <button onclick="openModal('ensalada')" class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-xl hover:bg-stone-800 transition text-sm">Ver Receta</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Mensaje de sin resultados -->
+        <div id="noResults" class="hidden text-center py-12">
+            <p class="text-stone-500 text-lg">No encontramos ninguna receta con ese nombre o ingrediente.</p>
+        </div>
+    </main>
+
+    <!-- Modal de Receta Detallada -->
+    <div id="recipeModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 relative shadow-xl">
+            <button onclick="closeModal()" class="absolute top-4 right-4 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-full w-8 h-8 flex items-center justify-center font-bold">✕</button>
+            <div id="modalContent">
+                <!-- El contenido dinámico de la receta se carga aquí -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-stone-200 py-6 mt-12 text-center text-sm text-stone-500">
+        <p>Creado con ❤️ y desplegado en GitHub Pages.</p>
+    </footer>
+
+    <!-- Scripts de interactividad -->
+    <script>
+        // Base de datos local de recetas para el modal
+        const recipesData = {
+            carbonara: {
+                title: "Pasta Carbonara Auténtica",
+                time: "20 minutos",
+                category: "Plato Principal",
+                image: "https://images.unsplash.com/photo-1612874742237-6526221588e3?auto=format&fit=crop&w=600&q=80",
+                ingredients: [
+                    "320g de Spaghetti",
+                    "150g de Guanciale (o Pancetta)",
+                    "4 yemas de huevo grandes",
+                    "100g de queso Pecorino Romano rallado",
+                    "Pimienta negra recién molida"
+                ],
+                steps: [
+                    "Cocinar la pasta en abundante agua hirviendo con sal (poca sal, ya que el guanciale y el pecorino son salados).",
+                    "Cortar el guanciale en tiras y dorarlo en una sartén a fuego medio sin aceite adicional hasta que esté crujiente.",
+                    "En un bol, batir las yemas de huevo junto con el queso pecorino rallado y abundante pimienta negra molida.",
+                    "Reservar media taza del agua de cocción de la pasta antes de escurrirla.",
+                    "Mezclar la pasta caliente directamente en la sartén con el guanciale (fuera del fuego), añadir la mezcla de huevos y un chorrito del agua de cocción reservada para crear una salsa cremosa."
+                ]
+            },
+            cheesecake: {
+                title: "Tarta de Queso Cremosa",
+                time: "45 minutos + enfriado",
+                category: "Postre",
+                image: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=600&q=80",
+                ingredients: [
+                    "600g de queso crema (tipo Philadelphia)",
+                    "4 huevos",
+                    "200g de azúcar blanca",
+                    "400ml de nata para montar (crema de leche 35% M.G.)",
+                    "1 cucharada de harina de trigo"
+                ],
+                steps: [
+                    "Precalentar el horno a 200°C y forrar un molde redondo con papel de hornear humedecido.",
+                    "Batir el queso crema con el azúcar hasta que esté suave y cremoso.",
+                    "Añadir los huevos uno a uno batiendo a velocidad baja.",
+                    "Incorporar la nata líquida y la cucharada de harina, mezclando bien.",
+                    "Verter en el molde y hornear durante unos 40-45 minutos hasta que la superficie esté dorada y el centro aún se tambalee ligeramente."
+                ]
+            },
+            ensalada: {
+                title: "Ensalada de Garbanzos",
+                time: "10 minutos",
+                category: "Rápida",
+                image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                ingredients: [
+                    "1 bote (400g) de garbanzos cocidos",
+                    "1 pepino mediano en cubitos",
+                    "2 tomates maduros picados",
+                    "1/2 cebolla morada fina",
+                    "Queso feta desmenuzado, aceite de oliva, jugo de limón, sal y orégano"
+                ],
+                steps: [
+                    "Lavar y escurrir muy bien los garbanzos cocidos.",
+                    "En un bol grande, mezclar los garbanzos con el pepino, el tomate y la cebolla morada.",
+                    "Agregar el queso feta desmenuzado por encima.",
+                    "Preparar una vinagreta mezclando aceite de oliva virgen extra, jugo de limón, sal y orégano al gusto.",
+                    "Aderezar la ensalada justo antes de servir y mezclar bien."
+                ]
+            }
+        };
+
+        // Función para abrir el modal
+        function openModal(recipeKey) {
+            const recipe = recipesData[recipeKey];
+            if (!recipe) return;
+
+            const content = `
+                <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-64 object-cover rounded-2xl mb-6">
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">${recipe.category}</span>
+                    <span class="text-xs text-stone-500">⏱️ ${recipe.time}</span>
+                </div>
+                <h2 class="text-2xl font-bold mb-4 text-stone-900">${recipe.title}</h2>
+                
+                <h3 class="text-lg font-bold mb-2 text-stone-800">Ingredientes</h3>
+                <ul class="list-disc list-inside space-y-1 mb-6 text-stone-600 text-sm">
+                    ${recipe.ingredients.map(ing => `<li>${ing}</li>`).join('')}
+                </ul>
+
+                <h3 class="text-lg font-bold mb-2 text-stone-800">Preparación</h3>
+                <ol class="list-decimal list-inside space-y-2 text-stone-600 text-sm">
+                    ${recipe.steps.map(step => `<li class="pl-1">${step}</li>`).join('')}
+                </ol>
+            `;
+
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('recipeModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            document.getElementById('recipeModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Cerrar con la tecla ESC o clic fuera del modal
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+        document.getElementById('recipeModal').addEventListener('click', (e) => {
+            if (e.target.id === 'recipeModal') closeModal();
+        });
+
+        // Filtrado por categoría
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.recipe-card');
+            const buttons = document.querySelectorAll('.category-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-stone-900', 'text-white');
+                btn.classList.add('bg-stone-200', 'text-stone-700');
+            });
+            event.target.classList.remove('bg-stone-200', 'text-stone-700');
+            event.target.classList.add('bg-stone-900', 'text-white');
+
+            cards.forEach(card => {
+                if (category === 'todos' || card.dataset.category === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Búsqueda en tiempo real
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.recipe-card');
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const title = card.dataset.title;
+                const text = card.textContent.toLowerCase();
+                if (title.includes(term) || text.includes(term)) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
