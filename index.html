@@ -1,256 +1,277 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recetas Funcionales</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>Recetas Funcionales - Salud Visual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Open Sans', sans-serif; }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
-        /* Ocultar barra de desplazamiento en el carrusel manteniendo funcionalidad táctil */
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Open Sans', sans-serif; background-color: #FBFBF9; color: #2C2C2C; line-height: 1.6; }
+        h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+        
+        /* Header Estilo Good Food */
+        header { background: #fff; border-bottom: 1px solid #E5E5E0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-title { display: flex; align-items: center; gap: 16px; }
+        .menu-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 6px; }
+        .menu-btn span { display: block; width: 24px; height: 3px; background-color: #2C2C2C; border-radius: 2px; }
+        .site-title { font-size: 24px; font-weight: 700; color: #1A1A1A; cursor: pointer; }
+        .user-avatar { width: 38px; height: 38px; background: #F0F0EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+
+        /* Buscador */
+        .search-bar-container { background: #F4F4F0; border-top: 1px solid #E5E5E0; padding: 12px 20px; }
+        .search-inner { max-width: 700px; margin: 0 auto; position: relative; }
+        .search-inner input { width: 100%; padding: 12px 20px 12px 45px; border-radius: 30px; border: 1px solid #D1D1CB; font-size: 14px; outline: none; background: #fff; }
+        .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 16px; color: #777; }
+
+        /* Menú lateral (Drawer) */
+        #sideMenu { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; display: none; }
+        #sideMenu.active { display: flex; }
+        .drawer { background: #fff; width: 300px; height: 100%; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 4px 0 15px rgba(0,0,0,0.1); }
+        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid #E5E5E0; padding-bottom: 12px; }
+        .close-drawer { background: none; border: none; font-size: 22px; cursor: pointer; }
+        .drawer-nav button { width: 100%; text-align: left; background: none; border: none; padding: 12px 16px; font-size: 15px; font-weight: 600; color: #444; border-radius: 8px; cursor: pointer; margin-bottom: 6px; transition: background 0.2s; }
+        .drawer-nav button:hover { background: #EAF3EC; color: #1E5128; }
+
+        /* Contenido Principal Centrado */
+        main { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .section-title { font-size: 26px; font-weight: 700; margin-bottom: 20px; border-bottom: 2px solid #1E5128; padding-bottom: 8px; display: inline-block; }
+
+        /* Carrusel Destacado */
+        .carousel-wrapper { position: relative; margin-bottom: 50px; }
+        .carousel { display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 10px; scrollbar-width: none; }
+        .carousel::-webkit-scrollbar { display: none; }
+        .carousel-card { min-width: 300px; max-width: 300px; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #E5E5E0; cursor: pointer; flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s; }
+        .carousel-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .carousel-img { height: 180px; width: 100%; object-fit: cover; }
+        .carousel-body { padding: 16px; }
+        .badge { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+        .badge-desayunos { background: #EAF3EC; color: #1E5128; }
+        .badge-almuerzos { background: #FCF3CF; color: #7D6608; }
+        .badge-postres { background: #FADBD8; color: #78281F; }
+        .badge-bebidas { background: #E8F8F5; color: #0E6251; }
+        .carousel-title { font-size: 16px; font-weight: 700; color: #1A1A1A; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* Grid de Recetas (Catálogo) */
+        .grid-recipes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .recipe-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #E5E5E0; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
+        .recipe-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
+        .recipe-img-container { height: 200px; width: 100%; overflow: hidden; cursor: pointer; }
+        .recipe-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+        .recipe-card:hover .recipe-img { transform: scale(1.05); }
+        .recipe-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .recipe-title { font-size: 18px; font-weight: 700; color: #1A1A1A; cursor: pointer; margin-top: 8px; margin-bottom: 12px; }
+        .recipe-title:hover { color: #1E5128; }
+        .recipe-meta { font-size: 12px; color: #666; display: flex; justify-content: space-between; border-top: 1px solid #F0F0EE; padding-top: 12px; }
+
+        /* Modal / Vista de Receta Completa */
+        #recipeModal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+        #recipeModal.active { display: flex; }
+        .modal-box { background: #fff; width: 100%; max-width: 800px; max-height: 90vh; border-radius: 16px; overflow-y: auto; padding: 30px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .close-modal { position: absolute; right: 20px; top: 20px; background: #F4F4F0; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+        .modal-img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; margin: 20px 0; }
+        .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+        @media(max-width: 768px) { .modal-grid { grid-template-columns: 1fr; } }
+        .modal-box ul, .modal-box ol { padding-left: 20px; font-size: 14px; color: #444; line-height: 1.8; }
+        .modal-box li { margin-bottom: 8px; }
+        .box-section { background: #F9F9F6; padding: 20px; border-radius: 10px; border: 1px solid #E5E5E0; }
+
+        /* Footer */
+        footer { background: #1A1A1A; color: #CCC; text-align: center; padding: 40px 20px; margin-top: 60px; font-size: 13px; }
+        footer p { margin-bottom: 6px; }
+
+        .hidden { display: none !important; }
     </style>
 </head>
-<body class="bg-stone-50 text-stone-900 min-h-screen flex flex-col">
+<body>
 
-    <!-- Header Estilo BBC Good Food -->
-    <header class="bg-white border-b border-stone-200 sticky top-0 z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
-            
-            <!-- Menú hamburguesa y Título -->
-            <div class="flex items-center space-x-4">
-                <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-stone-100 text-stone-700 transition" aria-label="Menú">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="nav-title">
+                <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir Menú">
+                    <span></span><span></span><span></span>
                 </button>
-                <h1 onclick="resetView()" class="text-2xl sm:text-3xl font-bold text-stone-950 cursor-pointer">
-                    Recetas funcionales
-                </h1>
+                <h1 class="site-title" onclick="resetView()">Recetas funcionales</h1>
             </div>
-
-            <!-- Perfil de usuario -->
-            <div class="w-10 h-10 rounded-full bg-stone-100 border border-stone-300 flex items-center justify-center text-stone-700 font-bold shadow-inner">
-                👤
-            </div>
+            <div class="user-avatar">👤</div>
         </div>
-
-        <!-- Barra de Búsqueda -->
-        <div class="bg-stone-100 border-t border-stone-200 py-3 px-4">
-            <div class="max-w-2xl mx-auto relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-stone-400">🔍</span>
-                <input type="text" id="searchInput" placeholder="Buscar receta, ingrediente..." 
-                    class="w-full pl-11 pr-4 py-2.5 text-sm bg-white border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-600 transition shadow-sm">
+        <div class="search-bar-container">
+            <div class="search-inner">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="Buscar receta, ingrediente...">
             </div>
         </div>
     </header>
 
-    <!-- Menú Lateral Oculto (Drawer) -->
-    <div id="sideMenu" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity flex">
-        <div class="bg-white w-80 h-full shadow-2xl p-6 flex flex-col justify-between">
+    <!-- Menú Lateral (Drawer) -->
+    <div id="sideMenu" onclick="if(event.target === this) toggleMenu()">
+        <div class="drawer">
             <div>
-                <div class="flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
-                    <h2 class="font-bold text-xl text-stone-900">Menú de Recetas</h2>
-                    <button onclick="toggleMenu()" class="text-stone-500 hover:text-stone-900 text-xl font-bold p-1">✕</button>
+                <div class="drawer-header">
+                    <h2 class="serif" style="font-size: 20px;">Menú de Recetas</h2>
+                    <button class="close-drawer" onclick="toggleMenu()">✕</button>
                 </div>
-                <nav class="space-y-2 font-semibold text-stone-700">
-                    <button onclick="filterCategory('todos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 hover:text-emerald-800 transition">Todas las recetas</button>
-                    <button onclick="filterCategory('desayunos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 hover:text-emerald-800 transition">1. Desayunos</button>
-                    <button onclick="filterCategory('almuerzos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 hover:text-emerald-800 transition">2. Almuerzos y cenas</button>
-                    <button onclick="filterCategory('postres'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 hover:text-emerald-800 transition">3. Postres</button>
-                    <button onclick="filterCategory('bebidas'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-xl hover:bg-emerald-50 hover:text-emerald-800 transition">4. Bebidas</button>
+                <nav class="drawer-nav">
+                    <button onclick="filterCategory('todos'); toggleMenu();">Todas las recetas</button>
+                    <button onclick="filterCategory('desayunos'); toggleMenu();">1. Desayunos</button>
+                    <button onclick="filterCategory('almuerzos'); toggleMenu();">2. Almuerzos y cenas</button>
+                    <button onclick="filterCategory('postres'); toggleMenu();">3. Postres</button>
+                    <button onclick="filterCategory('bebidas'); toggleMenu();">4. Bebidas</button>
                 </nav>
             </div>
-            <div class="text-xs text-stone-400 text-center pb-4">Salud visual y bienestar</div>
+            <p style="font-size: 11px; color: #888; text-align: center;">Salud visual y bienestar integral</p>
         </div>
-        <div class="flex-grow" onclick="toggleMenu()"></div>
     </div>
 
-    <!-- Contenido Principal Centrado -->
-    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
-        
-        <!-- Sección de Carrusel Destacado -->
-        <section class="mb-12">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="font-serif text-2xl font-bold text-stone-900">Recetas Destacadas</h2>
-                <div class="flex gap-2">
-                    <button onclick="scrollCarousel(-1)" class="w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center font-bold text-stone-700 transition">‹</button>
-                    <button onclick="scrollCarousel(1)" class="w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center font-bold text-stone-700 transition">›</button>
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Carrusel Destacado -->
+        <section class="carousel-wrapper">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 class="serif" style="font-size: 22px;">Recetas Destacadas</h2>
+                <div style="display: flex; gap: 8px;">
+                    <button onclick="scrollCarousel(-1)" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ccc; background:#fff; cursor:pointer;">‹</button>
+                    <button onclick="scrollCarousel(1)" style="width: 32px; height: 32px; border-radius: 50%; border: 1px solid #ccc; background:#fff; cursor:pointer;">›</button>
                 </div>
             </div>
-            <!-- Contenedor Carrusel Horizontal -->
-            <div id="carouselContainer" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4 px-1">
-                
-                <!-- Slide 1 -->
-                <div onclick="openModal('arepa_huevo')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
-                    <div class="h-48 overflow-hidden bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80" alt="Arepa" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Desayunos</span>
-                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Arepa integral con huevo, aguacate y espinaca</h3>
-                        <p class="text-xs text-stone-500 mt-1">⏱️ 15 min • 1 porción</p>
+            <div class="carousel" id="carouselContainer">
+                <div class="carousel-card" onclick="openModal('arepa_huevo')">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Arepa">
+                    <div class="carousel-body">
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="carousel-title">Arepa integral con huevo, aguacate y espinaca</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 15 min • 1 porción</p>
                     </div>
                 </div>
-
-                <!-- Slide 2 -->
-                <div onclick="openModal('pescado_lentejas')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
-                    <div class="h-48 overflow-hidden bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Pescado" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Almuerzos y cenas</span>
-                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Pescado a la plancha con lentejas y aguacate</h3>
-                        <p class="text-xs text-stone-500 mt-1">⏱️ 25 min • 1 porción</p>
+                <div class="carousel-card" onclick="openModal('pescado_lentejas')">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Pescado">
+                    <div class="carousel-body">
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="carousel-title">Pescado a la plancha con lentejas y aguacate</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 25 min • 1 porción</p>
                     </div>
                 </div>
-
-                <!-- Slide 3 -->
-                <div onclick="openModal('pudin_chia')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
-                    <div class="h-48 overflow-hidden bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Postre" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2 py-0.5 rounded">Postres</span>
-                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Pudín de chía y puré de mango</h3>
-                        <p class="text-xs text-stone-500 mt-1">⏱️ 15 min + reposo • 1 porción</p>
+                <div class="carousel-card" onclick="openModal('pudin_chia')">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Postre">
+                    <div class="carousel-body">
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="carousel-title">Pudín de chía y puré de mango</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 15 min + reposo • 1 porción</p>
                     </div>
                 </div>
-
-                <!-- Slide 4 -->
-                <div onclick="openModal('smoothie_verde')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
-                    <div class="h-48 overflow-hidden bg-stone-100">
-                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80" alt="Bebida" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-4">
-                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 rounded">Bebidas</span>
-                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Smoothie verde protector</h3>
-                        <p class="text-xs text-stone-500 mt-1">⏱️ 5 min • 1 porción</p>
+                <div class="carousel-card" onclick="openModal('smoothie_verde')">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Bebida">
+                    <div class="carousel-body">
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="carousel-title">Smoothie verde protector</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 5 min • 1 porción</p>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- Título del Catálogo -->
-        <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
-            <h2 id="sectionTitle" class="text-2xl font-bold text-stone-900 font-serif">Todas las Recetas</h2>
-            <span id="activeBadge" class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Catálogo Completo</span>
+        <!-- Catálogo de Recetas -->
+        <div style="margin-bottom: 24px; display: flex; justify-content: space-between; align-items: center;">
+            <h2 class="section-title serif" id="sectionTitle">Todas las Recetas</h2>
         </div>
 
-        <!-- Grid de Recetas (Centrado y Adaptativo) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="recipesGrid">
-            
-            <!-- Receta 1: Desayunos -->
-            <article class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col w-full max-w-sm" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
-                <div class="overflow-hidden h-56 bg-stone-100 cursor-pointer" onclick="openModal('arepa_huevo')">
-                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80" alt="Arepa" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+        <div class="grid-recipes" id="recipesGrid">
+            <!-- Receta 1 -->
+            <article class="recipe-card" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
+                <div class="recipe-img-container" onclick="openModal('arepa_huevo')">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa">
                 </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
+                <div class="recipe-content">
                     <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">Desayunos</span>
-                        <h3 onclick="openModal('arepa_huevo')" class="font-serif text-xl font-bold mt-3 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
-                            Arepa integral con huevo, aguacate y espinaca
-                        </h3>
-                        <p class="text-stone-600 text-sm line-clamp-2">Combinación nutritiva de maíz integral, hoja verde y grasas saludables para iniciar el día.</p>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_huevo')">Arepa integral con huevo, aguacate y espinaca</h3>
+                        <p style="font-size: 13px; color: #666;">Combinación nutritiva de maíz integral, hoja verde y grasas saludables para iniciar el día.</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+                    <div class="recipe-meta">
                         <span>⏱️ 15 min</span>
-                        <span class="text-emerald-700 font-semibold">1 porción</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Receta 2: Almuerzos y cenas -->
-            <article class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col w-full max-w-sm" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
-                <div class="overflow-hidden h-56 bg-stone-100 cursor-pointer" onclick="openModal('pescado_lentejas')">
-                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Pescado" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            <!-- Receta 2 -->
+            <article class="recipe-card" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
+                <div class="recipe-img-container" onclick="openModal('pescado_lentejas')">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pescado">
                 </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
+                <div class="recipe-content">
                     <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-1 rounded-md">Almuerzos y cenas</span>
-                        <h3 onclick="openModal('pescado_lentejas')" class="font-serif text-xl font-bold mt-3 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
-                            Pescado a la plancha con lentejas, tomate y aguacate
-                        </h3>
-                        <p class="text-stone-600 text-sm line-clamp-2">Aporte clave de omega-3 y fibra vegetal en un plato equilibrado.</p>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pescado_lentejas')">Pescado a la plancha con lentejas, tomate y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Aporte clave de omega-3 y fibra vegetal en un plato equilibrado.</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+                    <div class="recipe-meta">
                         <span>⏱️ 25 min</span>
-                        <span class="text-emerald-700 font-semibold">1 porción</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Receta 3: Postres -->
-            <article class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col w-full max-w-sm" data-category="postres" data-title="pudín de chía y puré de mango">
-                <div class="overflow-hidden h-56 bg-stone-100 cursor-pointer" onclick="openModal('pudin_chia')">
-                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Postre" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            <!-- Receta 3 -->
+            <article class="recipe-card" data-category="postres" data-title="pudín de chía y puré de mango">
+                <div class="recipe-img-container" onclick="openModal('pudin_chia')">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Postre">
                 </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
+                <div class="recipe-content">
                     <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-1 rounded-md">Postres</span>
-                        <h3 onclick="openModal('pudin_chia')" class="font-serif text-xl font-bold mt-3 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
-                            Pudín de chía y puré de mango
-                        </h3>
-                        <p class="text-stone-600 text-sm line-clamp-2">Opción dulce sin azúcares añadidos, rica en betacarotenos y textura cremosa.</p>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pudin_chia')">Pudín de chía y puré de mango</h3>
+                        <p style="font-size: 13px; color: #666;">Opción dulce sin azúcares añadidos, rica en betacarotenos y textura cremosa.</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+                    <div class="recipe-meta">
                         <span>⏱️ 15 min + reposo</span>
-                        <span class="text-emerald-700 font-semibold">1 porción</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Receta 4: Bebidas -->
-            <article class="recipe-card bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col w-full max-w-sm" data-category="bebidas" data-title="smoothie verde protector">
-                <div class="overflow-hidden h-56 bg-stone-100 cursor-pointer" onclick="openModal('smoothie_verde')">
-                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80" alt="Bebida" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            <!-- Receta 4 -->
+            <article class="recipe-card" data-category="bebidas" data-title="smoothie verde protector">
+                <div class="recipe-img-container" onclick="openModal('smoothie_verde')">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bebida">
                 </div>
-                <div class="p-6 flex flex-col flex-grow justify-between">
+                <div class="recipe-content">
                     <div>
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-1 rounded-md">Bebidas</span>
-                        <h3 onclick="openModal('smoothie_verde')" class="font-serif text-xl font-bold mt-3 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
-                            Smoothie verde protector
-                        </h3>
-                        <p class="text-stone-600 text-sm line-clamp-2">Bebida hidratante con hojas verdes y un toque cítrico para nutrir tu día.</p>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('smoothie_verde')">Smoothie verde protector</h3>
+                        <p style="font-size: 13px; color: #666;">Bebida hidratante con hojas verdes y un toque cítrico para nutrir tu día.</p>
                     </div>
-                    <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
+                    <div class="recipe-meta">
                         <span>⏱️ 5 min</span>
-                        <span class="text-emerald-700 font-semibold">1 porción</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
                     </div>
                 </div>
             </article>
-
         </div>
 
-        <!-- Sin resultados -->
-        <div id="noResults" class="hidden text-center py-20">
-            <p class="text-stone-500 text-lg">No encontramos ninguna receta con ese término.</p>
-            <button onclick="resetView()" class="mt-3 text-sm text-emerald-700 font-semibold underline">Ver todas las recetas</button>
+        <div id="noResults" class="hidden" style="text-align: center; padding: 60px 0;">
+            <p style="font-size: 18px; color: #666;">No encontramos ninguna receta con ese término.</p>
+            <button onclick="resetView()" style="margin-top: 12px; background: none; border: none; color: #1E5128; font-weight: 600; cursor: pointer; text-decoration: underline;">Ver todas las recetas</button>
         </div>
     </main>
 
     <!-- Modal de Receta Completa -->
-    <div id="recipeModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
-        <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-2xl p-6 sm:p-10 my-auto">
-            <button onclick="closeModal()" class="absolute top-5 right-5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg transition">✕</button>
-            <div id="modalContent">
-                <!-- Contenido dinámico -->
-            </div>
+    <div id="recipeModal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-box">
+            <button class="close-modal" onclick="closeModal()">✕</button>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-stone-100 border-t border-stone-200 py-8 text-center text-xs text-stone-500 mt-auto">
-        <p class="font-bold text-stone-700 text-sm">Recetas Funcionales • Inspirado en Good Food</p>
-        <p class="mt-1">Alimentación consciente y cocina cotidiana.</p>
+    <footer>
+        <p style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Recetas Funcionales • Inspirado en Good Food</p>
+        <p>Alimentación consciente y cocina cotidiana orientada al bienestar visual.</p>
     </footer>
 
-    <!-- Script Funcional -->
+    <!-- Script de Interactividad -->
     <script>
         const recipesData = {
             arepa_huevo: {
@@ -344,64 +365,55 @@
             const r = recipesData[key];
             if (!r) return;
             const html = `
-                <div class="mb-6">
-                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-md">${r.category}</span>
-                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-2 mb-3">${r.title}</h2>
-                    <div class="flex items-center gap-4 text-xs text-stone-500 font-medium pb-4 border-b border-stone-200">
-                        <span>⏱️ Tiempo: <strong>${r.time}</strong></span>
-                        <span>👥 Rinde: <strong>${r.servings}</strong></span>
-                    </div>
+                <span class="badge" style="background:#EAF3EC; color:#1E5128;">${r.category}</span>
+                <h2 class="serif" style="font-size: 24px; margin: 10px 0 15px 0;">${r.title}</h2>
+                <div style="font-size: 13px; color: #666; margin-bottom: 20px; border-bottom: 1px solid #E5E5E0; padding-bottom: 12px;">
+                    ⏱️ Tiempo: <strong>${r.time}</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 👥 Rinde: <strong>${r.servings}</strong>
                 </div>
-                <div class="mb-8 rounded-2xl overflow-hidden h-64 sm:h-80 bg-stone-100 shadow-sm">
-                    <img src="${r.image}" alt="${r.title}" class="w-full h-full object-cover">
-                </div>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-                    <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200">
-                        <h3 class="font-bold text-stone-900 mb-3 text-base">🛒 Ingredientes</h3>
-                        <ul class="space-y-2 text-stone-700 text-sm">
-                            ${r.ingredients.map(i => `<li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span><span>${i}</span></li>`).join('')}
+                <img src="${r.image}" class="modal-img" alt="${r.title}">
+                <div class="modal-grid">
+                    <div class="box-section">
+                        <h3 class="serif" style="font-size: 16px; margin-bottom: 12px;">🛒 Ingredientes</h3>
+                        <ul>
+                            ${r.ingredients.map(i => `<li>${i}</li>`).join('')}
                         </ul>
                     </div>
-                    <div class="bg-stone-50 p-5 rounded-2xl border border-stone-200">
-                        <h3 class="font-bold text-stone-900 mb-3 text-base">👨‍🍳 Preparación</h3>
-                        <ol class="space-y-3 text-stone-700 text-sm">
-                            ${r.steps.map((s, idx) => `<li class="flex gap-2.5"><span class="font-bold text-white bg-emerald-700 text-xs rounded-full w-5 h-5 flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span><span>${s}</span></li>`).join('')}
+                    <div class="box-section">
+                        <h3 class="serif" style="font-size: 16px; margin-bottom: 12px;">👨‍🍳 Preparación</h3>
+                        <ol>
+                            ${r.steps.map(s => `<li>${s}</li>`).join('')}
                         </ol>
                     </div>
                 </div>
-                <div class="bg-amber-50/70 border border-amber-200 p-5 rounded-2xl">
-                    <h3 class="font-bold text-stone-900 mb-1 text-sm">🍽️ Sugerencia de Emplatado</h3>
-                    <p class="text-stone-700 text-sm leading-relaxed">${r.plating}</p>
+                <div style="margin-top: 20px; background: #FCF3CF; padding: 16px; border-radius: 8px; border: 1px solid #F9E79F;">
+                    <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 4px;">🍽️ Sugerencia de Emplatado</h3>
+                    <p style="font-size: 13px; color: #555;">${r.plating}</p>
                 </div>
             `;
             document.getElementById('modalContent').innerHTML = html;
-            document.getElementById('recipeModal').classList.remove('hidden');
+            document.getElementById('recipeModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById('recipeModal').classList.add('hidden');
+            document.getElementById('recipeModal').classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
         function toggleMenu() {
-            document.getElementById('sideMenu').classList.toggle('hidden');
+            document.getElementById('sideMenu').classList.toggle('active');
         }
 
-        // Control del Carrusel
-        function scrollCarousel(direction) {
+        function scrollCarousel(dir) {
             const container = document.getElementById('carouselContainer');
-            container.scrollBy({ left: direction * 320, behavior: 'smooth' });
+            container.scrollBy({ left: dir * 320, behavior: 'smooth' });
         }
 
         function filterCategory(cat) {
             const cards = document.querySelectorAll('.recipe-card');
             const title = document.getElementById('sectionTitle');
-            const badge = document.getElementById('activeBadge');
-            
             const names = { todos: "Todas las Recetas", desayunos: "Desayunos", almuerzos: "Almuerzos y Cenas", postres: "Postres", bebidas: "Bebidas" };
             title.textContent = names[cat] || "Recetas";
-            badge.textContent = cat.toUpperCase();
 
             let visible = 0;
             cards.forEach(card => {
@@ -440,11 +452,8 @@
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeModal();
-                document.getElementById('sideMenu').classList.add('hidden');
+                document.getElementById('sideMenu').classList.remove('active');
             }
-        });
-        document.getElementById('recipeModal').addEventListener('click', (e) => {
-            if (e.target.id === 'recipeModal') closeModal();
         });
     </script>
 </body>
