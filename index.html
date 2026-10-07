@@ -6,139 +6,135 @@
     <title>Recetario</title>
     <style>
         :root {
-            --primary-color: #ff6b6b;
-            --secondary-color: #f8f9fa;
-            --text-color: #333;
-            --border-radius: 12px;
-            --transition: all 0.3s ease;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary: #2c3e50;
+            --accent: #e67e22;
+            --bg: #f9f9f9;
+            --card-bg: #ffffff;
+            --text: #333333;
+            --text-light: #777777;
+            --border: #e0e0e0;
         }
 
         body {
-            background-color: #f4f7f6;
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem;
             text-align: center;
-            margin-bottom: 30px;
         }
 
         h1 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 2.5rem;
+            margin: 0;
+            font-size: 1.8rem;
         }
 
-        /* Barra de búsqueda y filtros estética */
         .search-container {
-            max-width: 600px;
-            margin: 0 auto 40px auto;
-            position: relative;
+            background: var(--card-bg);
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
         }
 
-        #search-input {
+        .search-bar {
             width: 100%;
-            padding: 15px 20px 15px 50px;
+            max-width: 600px;
+            padding: 0.75rem 1rem;
             font-size: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 50px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
             outline: none;
-            background-color: #fff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
+            transition: all 0.3s ease;
         }
 
-        #search-input:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 4px 20px rgba(255, 107, 107, 0.15);
+        .search-bar:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 8px rgba(230, 126, 34, 0.2);
         }
 
-        .search-icon {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            font-size: 1.2rem;
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            box-sizing: border-box;
         }
 
-        /* Cuadrícula de recetas */
-        .recipes-grid {
+        .recipe-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 1.5rem;
         }
 
         .recipe-card {
-            background: #fff;
-            border-radius: var(--border-radius);
+            background: var(--card-bg);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-            transition: var(--transition);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             display: flex;
             flex-direction: column;
         }
 
         .recipe-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        .recipe-image-container {
+        .recipe-img-container {
             width: 100%;
             height: 180px;
-            background-color: #e9ecef;
+            background-color: #eee;
             overflow: hidden;
         }
 
-        .recipe-image-container img {
+        .recipe-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .recipe-card:hover .recipe-image-container img {
-            transform: scale(1.05);
         }
 
         .recipe-content {
-            padding: 20px;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            flex: 1;
         }
 
         .recipe-title {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: var(--text-color);
-        }
-
-        .recipe-description {
-            font-size: 0.9rem;
-            color: #666;
-            flex-grow: 1;
-        }
-
-        .no-results {
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 40px;
+            margin: 0 0 0.5rem 0;
             font-size: 1.2rem;
-            color: #777;
-            display: none;
+            color: var(--primary);
+        }
+
+        .recipe-desc {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            font-size: 0.9rem;
+            margin-top: auto;
         }
     </style>
 </head>
@@ -146,234 +142,121 @@
 
     <header>
         <h1>Mi Recetario</h1>
-        <div class="search-container">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="search-input" placeholder="Busca una receta por nombre o ingrediente...">
-        </div>
     </header>
 
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-bar" placeholder="Buscar recetas..." onkeyup="filterRecipes()">
+    </div>
+
     <main>
-        <div class="recipes-grid" id="recipes-container">
+        <div class="recipe-grid" id="recipeGrid">
             <!-- 1 -->
-            <div class="recipe-card" data-name="arepa de hongo y queso">
-                <div class="recipe-image-container">
-                    <img src="images/arepa_hongo_queso.jpg" alt="Arepa de hongo y queso" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Arepa de hongo y queso</h3>
-                    <p class="recipe-description">Deliciosa arepa rellena de champiñones salteados y queso fundido.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 1">
+                <div class="recipe-img-container"><img src="images/receta1.jpg" alt="Receta 1" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+1'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 1</h2><p class="recipe-desc">Descripción detallada de la receta número 1.</p></div>
             </div>
-
             <!-- 2 -->
-            <div class="recipe-card" data-name="arepa de choclo con quesito">
-                <div class="recipe-image-container">
-                    <img src="images/arepa_choclo.jpg" alt="Arepa de choclo con quesito" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Arepa de choclo con quesito</h3>
-                    <p class="recipe-description">Tradicional arepa dulce de maíz tierno acompañada de un buen trozo de quesito.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 2">
+                <div class="recipe-img-container"><img src="images/receta2.jpg" alt="Receta 2" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+2'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 2</h2><p class="recipe-desc">Descripción detallada de la receta número 2.</p></div>
             </div>
-
             <!-- 3 -->
-            <div class="recipe-card" data-name="arepa de pollo y maiz">
-                <div class="recipe-image-container">
-                    <img src="images/arepa_pollo_maiz.jpg" alt="Arepa de pollo y maíz" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Arepa de pollo y maíz</h3>
-                    <p class="recipe-description">Arepa rellena de pechuga desmenuzada, maíz tierno y un toque de salsa cremosa.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 3">
+                <div class="recipe-img-container"><img src="images/receta3.jpg" alt="Receta 3" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+3'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 3</h2><p class="recipe-desc">Descripción detallada de la receta número 3.</p></div>
             </div>
-
             <!-- 4 -->
-            <div class="recipe-card" data-name="tostadas francesas">
-                <div class="recipe-image-container">
-                    <img src="images/tostadas_francesas.jpg" alt="Tostadas francesas" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Tostadas francesas</h3>
-                    <p class="recipe-description">Pan sumergido en mezcla de huevo y leche, dorado a la sartén con canela.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 4">
+                <div class="recipe-img-container"><img src="images/receta4.jpg" alt="Receta 4" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+4'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 4</h2><p class="recipe-desc">Descripción detallada de la receta número 4.</p></div>
             </div>
-
             <!-- 5 -->
-            <div class="recipe-card" data-name="papas en casco con hogao">
-                <div class="recipe-image-container">
-                    <img src="images/papas_casco_hogao.jpg" alt="Papas en casco con hogao" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Papas en casco con hogao</h3>
-                    <p class="recipe-description">Papas doradas en cuña acompañadas de guiso tradicional de tomate y cebolla.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 5">
+                <div class="recipe-img-container"><img src="images/receta5.jpg" alt="Receta 5" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+5'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 5</h2><p class="recipe-desc">Descripción detallada de la receta número 5.</p></div>
             </div>
-
             <!-- 6 -->
-            <div class="recipe-card" data-name="panqueques de banano">
-                <div class="recipe-image-container">
-                    <img src="images/panqueques_banano.jpg" alt="Panqueques de banano" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Panqueques de banano</h3>
-                    <p class="recipe-description">Esponjosos panqueques elaborados con base de banano maduro sin azúcares añadidos.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 6">
+                <div class="recipe-img-container"><img src="images/receta6.jpg" alt="Receta 6" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+6'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 6</h2><p class="recipe-desc">Descripción detallada de la receta número 6.</p></div>
             </div>
-
             <!-- 7 -->
-            <div class="recipe-card" data-name="huevos pericos">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_pericos.jpg" alt="Huevos pericos" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos pericos</h3>
-                    <p class="recipe-description">Clásicos huevos revueltos con sofrito fresco de tomate y cebolla larga.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 7">
+                <div class="recipe-img-container"><img src="images/receta7.jpg" alt="Receta 7" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+7'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 7</h2><p class="recipe-desc">Descripción detallada de la receta número 7.</p></div>
             </div>
-
             <!-- 8 -->
-            <div class="recipe-card" data-name="huevos revueltos con champinones">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_champinones.jpg" alt="Huevos revueltos con champiñones" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos revueltos con champiñones</h3>
-                    <p class="recipe-description">Huevos revueltos suaves integrados con finas láminas de champiñones salteados.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 8">
+                <div class="recipe-img-container"><img src="images/receta8.jpg" alt="Receta 8" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+8'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 8</h2><p class="recipe-desc">Descripción detallada de la receta número 8.</p></div>
             </div>
-
             <!-- 9 -->
-            <div class="recipe-card" data-name="huevos revueltos con maiz">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_maiz.jpg" alt="Huevos revueltos con maíz" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos revueltos con maíz</h3>
-                    <p class="recipe-description">Una combinación rápida y sutilmente dulce de huevos con granos de maíz tierno.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 9">
+                <div class="recipe-img-container"><img src="images/receta9.jpg" alt="Receta 9" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+9'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 9</h2><p class="recipe-desc">Descripción detallada de la receta número 9.</p></div>
             </div>
-
             <!-- 10 -->
-            <div class="recipe-card" data-name="huevos revueltos con queso">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_queso.jpg" alt="Huevos revueltos con queso" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos revueltos con queso</h3>
-                    <p class="recipe-description">Huevos cremosos mezclados con cubitos de queso que se funden al calor.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 10">
+                <div class="recipe-img-container"><img src="images/receta10.jpg" alt="Receta 10" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+10'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 10</h2><p class="recipe-desc">Descripción detallada de la receta número 10.</p></div>
             </div>
-
             <!-- 11 -->
-            <div class="recipe-card" data-name="huevos revueltos con tomate">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_tomate.jpg" alt="Huevos revueltos con tomate" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos revueltos con tomate</h3>
-                    <p class="recipe-description">Trocitos de tomate jugoso integrados perfectamente en unos huevos bien revueltos.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 11">
+                <div class="recipe-img-container"><img src="images/receta11.jpg" alt="Receta 11" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+11'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 11</h2><p class="recipe-desc">Descripción detallada de la receta número 11.</p></div>
             </div>
-
             <!-- 12 -->
-            <div class="recipe-card" data-name="huevos pericos con champinones">
-                <div class="recipe-image-container">
-                    <img src="images/huevos_pericos_champinones.jpg" alt="Huevos pericos con champiñones" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Huevos pericos con champiñones</h3>
-                    <p class="recipe-description">La base tradicional de los huevos pericos enriquecida con champiñones.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 12">
+                <div class="recipe-img-container"><img src="images/receta12.jpg" alt="Receta 12" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+12'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 12</h2><p class="recipe-desc">Descripción detallada de la receta número 12.</p></div>
             </div>
-
             <!-- 13 -->
-            <div class="recipe-card" data-name="pan con mantequilla y queso">
-                <div class="recipe-image-container">
-                    <img src="images/pan_mantequilla_queso.jpg" alt="Pan con mantequilla y queso" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Pan con mantequilla y queso</h3>
-                    <p class="recipe-description">Pan tostado untado con mantequilla y una capa generosa de queso derretido.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 13">
+                <div class="recipe-img-container"><img src="images/receta13.jpg" alt="Receta 13" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+13'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 13</h2><p class="recipe-desc">Descripción detallada de la receta número 13.</p></div>
             </div>
-
             <!-- 14 -->
-            <div class="recipe-card" data-name="tostadas con jamon y queso">
-                <div class="recipe-image-container">
-                    <img src="images/tostadas_jamon_queso.jpg" alt="Tostadas con jamón y queso" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Tostadas con jamón y queso</h3>
-                    <p class="recipe-description">Clásico sándwich tostado al calor con jamón y queso fundido en su interior.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 14">
+                <div class="recipe-img-container"><img src="images/receta14.jpg" alt="Receta 14" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+14'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 14</h2><p class="recipe-desc">Descripción detallada de la receta número 14.</p></div>
             </div>
-
             <!-- 15 -->
-            <div class="recipe-card" data-name="sandwich de pollo desmenuzado">
-                <div class="recipe-image-container">
-                    <img src="images/sandwich_pollo.jpg" alt="Sándwich de pollo desmenuzado" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Sándwich de pollo desmenuzado</h3>
-                    <p class="recipe-description">Pan de caja relleno de pollo jugoso desmenuzado con vegetales frescos.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 15">
+                <div class="recipe-img-container"><img src="images/receta15.jpg" alt="Receta 15" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+15'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 15</h2><p class="recipe-desc">Descripción detallada de la receta número 15.</p></div>
             </div>
-
             <!-- 16 -->
-            <div class="recipe-card" data-name="sandwich de huevo cocido">
-                <div class="recipe-image-container">
-                    <img src="images/sandwich_huevo.jpg" alt="Sándwich de huevo cocido" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Sándwich de huevo cocido</h3>
-                    <p class="recipe-description">Mezcla cremosa de huevo cocido picado con un toque ligero de mayonesa.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 16">
+                <div class="recipe-img-container"><img src="images/receta16.jpg" alt="Receta 16" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+16'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 16</h2><p class="recipe-desc">Descripción detallada de la receta número 16.</p></div>
             </div>
-
             <!-- 17 -->
-            <div class="recipe-card" data-name="mini tortitas de platano maduro">
-                <div class="recipe-image-container">
-                    <img src="images/tortitas_platano.jpg" alt="Mini tortitas de plátano maduro" onerror="this.src='https://via.placeholder.com/300x180?text=Receta'">
-                </div>
-                <div class="recipe-content">
-                    <h3 class="recipe-title">Mini tortitas de plátano maduro</h3>
-                    <p class="recipe-description">Pequeñas porciones doradas y dulces a base de plátano maduro aplastado.</p>
-                </div>
+            <div class="recipe-card" data-name="receta 17">
+                <div class="recipe-img-container"><img src="images/receta17.jpg" alt="Receta 17" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=Receta+17'"></div>
+                <div class="recipe-content"><h2 class="recipe-title">Receta 17</h2><p class="recipe-desc">Descripción detallada de la receta número 17.</p></div>
             </div>
-
-            <!-- Mensaje de sin resultados -->
-            <div class="no-results" id="no-results-msg">No se encontraron recetas que coincidan con tu búsqueda.</div>
         </div>
     </main>
 
+    <footer>
+        <p>&copy; 2026 Mi Recetario</p>
+    </footer>
+
     <script>
-        const searchInput = document.getElementById('search-input');
-        const recipesContainer = document.getElementById('recipes-container');
-        const recipeCards = recipesContainer.getElementsByClassName('recipe-card');
-        const noResultsMsg = document.getElementById('no-results-msg');
+        function filterRecipes() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            let cards = document.getElementsByClassName('recipe-card');
 
-        searchInput.addEventListener('input', function() {
-            const query = searchInput.value.toLowerCase().trim();
-            let visibleCount = 0;
-
-            for (let i = 0; i < recipeCards.length; i++) {
-                const card = recipeCards[i];
-                const name = card.getAttribute('data-name');
-
-                if (name.includes(query)) {
-                    card.style.display = 'flex';
-                    visibleCount++;
+            for (let i = 0; i < cards.length; i++) {
+                let name = cards[i].getAttribute('data-name');
+                if (name.indexOf(filter) > -1) {
+                    cards[i].style.display = "";
                 } else {
-                    card.style.display = 'none';
+                    cards[i].style.display = "none";
                 }
             }
-
-            if (visibleCount === 0) {
-                noResultsMsg.style.display = 'block';
-            } else {
-                noResultsMsg.style.display = 'none';
-            }
-        });
+        }
     </script>
 </body>
 </html>
