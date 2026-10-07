@@ -10,6 +10,12 @@
         body { font-family: 'Open Sans', sans-serif; background-color: #FBFBF9; color: #2C2C2C; line-height: 1.6; }
         h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
         
+        /* Scrollbars más estéticos e incorporados */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #F4F4F0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: #D1D1CB; border-radius: 4px; transition: background 0.2s; }
+        ::-webkit-scrollbar-thumb:hover { background: #1E5128; }
+
         /* Header */
         header { background: #fff; border-bottom: 1px solid #E5E5E0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
         .header-container { max-width: 1200px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
@@ -41,8 +47,7 @@
 
         /* Carrusel Destacado */
         .carousel-wrapper { position: relative; margin-bottom: 50px; }
-        .carousel { display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 10px; scrollbar-width: none; }
-        .carousel::-webkit-scrollbar { display: none; }
+        .carousel { display: flex; gap: 20px; overflow-x: auto; scroll-behavior: smooth; padding-bottom: 10px; }
         .carousel-card { min-width: 300px; max-width: 300px; background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #E5E5E0; cursor: pointer; flex-shrink: 0; transition: transform 0.2s, box-shadow 0.2s; }
         .carousel-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
         .carousel-img { height: 180px; width: 100%; object-fit: cover; }
@@ -58,7 +63,7 @@
         .grid-recipes { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
         .recipe-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #E5E5E0; display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; }
         .recipe-card:hover { transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06); }
-        .recipe-img-container { height: 200px; width: 100%; overflow: hidden; cursor: pointer; }
+        .recipe-img-container { height: 200px; width: 100%; overflow: hidden; cursor: pointer; background: #f0f0ed; }
         .recipe-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
         .recipe-card:hover .recipe-img { transform: scale(1.05); }
         .recipe-content { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
@@ -66,22 +71,18 @@
         .recipe-title:hover { color: #1E5128; }
         .recipe-meta { font-size: 12px; color: #666; display: flex; justify-content: space-between; border-top: 1px solid #F0F0EE; padding-top: 12px; }
 
-        /* Modal / Vista de Receta Completa con esquinas suavemente redondeadas */
-        #recipeModal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
+        /* Modal / Vista de Receta Completa */
+        #recipeModal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; }
         #recipeModal.active { display: flex; }
         .modal-box { background: #fff; width: 100%; max-width: 900px; max-height: 90vh; border-radius: 28px; overflow-y: auto; padding: 40px; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); border: 1px solid #E5E5E0; }
-        .close-modal { position: absolute; right: 24px; top: 24px; background: #F4F4F0; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .close-modal { position: absolute; right: 24px; top: 24px; background: #F4F4F0; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; z-index: 10; }
         .close-modal:hover { background: #E5E5E0; }
-        .modal-img { width: 100%; height: 340px; object-fit: cover; border-radius: 16px; margin: 20px 0; }
+        .modal-img { width: 100%; height: 340px; object-fit: cover; border-radius: 16px; margin: 20px 0; background: #f0f0ed; }
         .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
         @media(max-width: 768px) { .modal-grid { grid-template-columns: 1fr; } }
         .modal-box ul, .modal-box ol { padding-left: 20px; font-size: 14px; color: #444; line-height: 1.8; }
         .modal-box li { margin-bottom: 8px; }
         .box-section { background: #F9F9F6; padding: 24px; border-radius: 16px; border: 1px solid #E5E5E0; }
-        
-        /* Fotos paso a paso en modal */
-        .steps-photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
-        .step-thumb { width: 100%; height: 80px; object-fit: cover; border-radius: 10px; border: 1px solid #ddd; }
 
         /* Footer */
         footer { background: #1A1A1A; color: #CCC; text-align: center; padding: 40px 20px; margin-top: 60px; font-size: 13px; }
@@ -101,9 +102,8 @@
                 </button>
                 <h1 class="site-title" onclick="resetView()">Recetas funcionales</h1>
             </div>
-            <!-- Logotipo del usuario -->
             <div class="user-avatar" title="Psicólogo Jairo Arboleda">
-                <img src="https://placehold.co/600x400/png" alt="Logo Jairo Arboleda">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Logo Jairo Arboleda">
             </div>
         </div>
         <div class="search-bar-container">
@@ -136,7 +136,7 @@
 
     <!-- Contenido Principal -->
     <main>
-        <!-- Carrusan Destacado (se oculta automáticamente al buscar o filtrar por menú) -->
+        <!-- Carrusel Destacado -->
         <section class="carousel-wrapper" id="carouselWrapper">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                 <h2 class="serif" style="font-size: 22px;">Recetas Destacadas</h2>
@@ -147,7 +147,7 @@
             </div>
             <div class="carousel" id="carouselContainer">
                 <div class="carousel-card" onclick="openModal('arepa_huevo')">
-                    <img src="https://placehold.co/600x400/png" class="carousel-img" alt="Arepa">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Arepa">
                     <div class="carousel-body">
                         <span class="badge badge-desayunos">Desayunos</span>
                         <h3 class="carousel-title">Arepa integral con huevo, aguacate y espinaca</h3>
@@ -155,7 +155,7 @@
                     </div>
                 </div>
                 <div class="carousel-card" onclick="openModal('pescado_lentejas')">
-                    <img src="https://placehold.co/600x400/png" class="carousel-img" alt="Pescado">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Pescado">
                     <div class="carousel-body">
                         <span class="badge badge-almuerzos">Almuerzos y cenas</span>
                         <h3 class="carousel-title">Pescado a la plancha con lentejas, tomate y aguacate</h3>
@@ -163,15 +163,15 @@
                     </div>
                 </div>
                 <div class="carousel-card" onclick="openModal('pudin_chia')">
-                    <img src="https://placehold.co/600x400/png" class="carousel-img" alt="Postre">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Postre">
                     <div class="carousel-body">
                         <span class="badge badge-postres">Postres</span>
                         <h3 class="carousel-title">Parfait de guayaba, yogur natural, chía y nueces</h3>
-                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 10 min + frío • 1 porción</p>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 10 min • 1 porción</p>
                     </div>
                 </div>
                 <div class="carousel-card" onclick="openModal('batido_guayaba')">
-                    <img src="https://placehold.co/600x400/png" class="carousel-img" alt="Bebida">
+                    <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Bebida">
                     <div class="carousel-body">
                         <span class="badge badge-bebidas">Bebidas</span>
                         <h3 class="carousel-title">Batido de guayaba, espinaca, yogur y chía</h3>
@@ -187,10 +187,11 @@
         </div>
 
         <div class="grid-recipes" id="recipesGrid">
-            <!-- DESAYUNOS -->
+            <!-- 17 RECETAS COMPLETAS -->
+            <!-- DESAYUNOS (1 al 5) -->
             <article class="recipe-card" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
                 <div class="recipe-img-container" onclick="openModal('arepa_huevo')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Arepa">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -198,16 +199,13 @@
                         <h3 class="recipe-title serif" onclick="openModal('arepa_huevo')">Arepa integral con huevo, aguacate y espinaca</h3>
                         <p style="font-size: 13px; color: #666;">Maíz integral, hoja verde, huevo y aguacate.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 15 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="desayunos" data-title="avena salada con espinaca huevo aguacate y chia">
                 <div class="recipe-img-container" onclick="openModal('avena_salada')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Avena">
+                    <img src="https://images.unsplash.com/photo-1517673132405-a56a12b18cef?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Avena">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -215,16 +213,13 @@
                         <h3 class="recipe-title serif" onclick="openModal('avena_salada')">Avena salada con espinaca, huevo, aguacate y chía</h3>
                         <p style="font-size: 13px; color: #666;">Fibra y grasas insaturadas en un bowl reconfortante.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 15 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="desayunos" data-title="arepa con frijol huevo aguacate y tomate">
                 <div class="recipe-img-container" onclick="openModal('arepa_frijol')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Arepa frijol">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa frijol">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -232,16 +227,13 @@
                         <h3 class="recipe-title serif" onclick="openModal('arepa_frijol')">Arepa con fríjol, huevo, aguacate y tomate</h3>
                         <p style="font-size: 13px; color: #666;">Leguminosa, maíz, aguacate y vegetal fresco.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 15 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="desayunos" data-title="arepa rellena de huevo espinaca y champiñones">
                 <div class="recipe-img-container" onclick="openModal('arepa_rellena')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Arepa rellena">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa rellena">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -249,17 +241,28 @@
                         <h3 class="recipe-title serif" onclick="openModal('arepa_rellena')">Arepa rellena de huevo, espinaca y champiñones</h3>
                         <p style="font-size: 13px; color: #666;">Preparación vegetalmente diversa y nutritiva.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 15 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
-            <!-- ALMUERZOS Y CENAS -->
+            <article class="recipe-card" data-category="desayunos" data-title="tostadas integrales con aguacate huevo pochado y ajonjoli">
+                <div class="recipe-img-container" onclick="openModal('tostadas_aguacate')">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Tostadas">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('tostadas_aguacate')">Tostadas integrales con aguacate, huevo pochado y ajonjolí</h3>
+                        <p style="font-size: 13px; color: #666;">Semillas y aguacate para una excelente nutrición matutina.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 10 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <!-- ALMUERZOS Y CENAS (6 al 11) -->
             <article class="recipe-card" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
                 <div class="recipe-img-container" onclick="openModal('pescado_lentejas')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Pescado">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pescado">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -267,17 +270,84 @@
                         <h3 class="recipe-title serif" onclick="openModal('pescado_lentejas')">Pescado a la plancha con lentejas, tomate y aguacate</h3>
                         <p style="font-size: 13px; color: #666;">Omega-3 y legumbres protectoras de retina.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 25 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
-            <!-- POSTRES -->
+            <article class="recipe-card" data-category="almuerzos" data-title="salmon al horno con pure de zanahoria y esparragos">
+                <div class="recipe-img-container" onclick="openModal('salmon_horno')">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Salmon">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('salmon_horno')">Salmón al horno con puré de zanahoria y espárragos</h3>
+                        <p style="font-size: 13px; color: #666;">Betacarotenos y ácidos grasos esenciales.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 30 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="pechuga de pollo en julianas con quinoa y vegetales mixtos">
+                <div class="recipe-img-container" onclick="openModal('pollo_quinoa')">
+                    <img src="https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pollo">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pollo_quinoa')">Pechuga de pollo en julianas con quinua y vegetales mixtos</h3>
+                        <p style="font-size: 13px; color: #666;">Proteína magra y carbohidratos complejos.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="ensalada de garbanzos atun espinaca y tomate cherry">
+                <div class="recipe-img-container" onclick="openModal('ensalada_garbanzos')">
+                    <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Ensalada">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('ensalada_garbanzos')">Ensalada de garbanzos, atún, espinaca y tomate cherry</h3>
+                        <p style="font-size: 13px; color: #666;">Fresca, saciante y rica en antioxidantes.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="truch asada con ensalada fresca de aguacate y mango">
+                <div class="recipe-img-container" onclick="openModal('truf_mango')">
+                    <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Trucha">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('truf_mango')">Trucha asada con ensalada fresca de aguacate y mango</h3>
+                        <p style="font-size: 13px; color: #666;">Vitaminas A y C combinadas con pescado fresco.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="bowl de lentejas con trozos de pollo y aguacate">
+                <div class="recipe-img-container" onclick="openModal('bowl_lentejas')">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bowl">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('bowl_lentejas')">Bowl de lentejas con trozos de pollo y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Nutrición completa en un solo plato hondo.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 20 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <!-- POSTRES (12 al 14) -->
             <article class="recipe-card" data-category="postres" data-title="parfait de guayaba yogur natural chia y nueces">
                 <div class="recipe-img-container" onclick="openModal('pudin_chia')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Postre">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Postre">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -285,17 +355,42 @@
                         <h3 class="recipe-title serif" onclick="openModal('pudin_chia')">Parfait de guayaba, yogur natural, chía y nueces</h3>
                         <p style="font-size: 13px; color: #666;">Antioxidantes con textura cremosa y saludable.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 10 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
-                    </div>
+                    <div class="recipe-meta"><span>⏱️ 10 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
-            <!-- BEBIDAS -->
+            <article class="recipe-card" data-category="postres" data-title="pudin de chia con frutos rojos y almendras">
+                <div class="recipe-img-container" onclick="openModal('pudin_frutos')">
+                    <img src="https://images.unsplash.com/photo-1505253716302-afdea603c4f0?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pudín">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pudin_frutos')">Pudín de chía con frutos rojos y almendras</h3>
+                        <p style="font-size: 13px; color: #666;">Alto contenido de antocianinas para la salud ocular.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 10 min + frío</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="postres" data-title="manzanas horneadas con canela y yogur griego">
+                <div class="recipe-img-container" onclick="openModal('manzanas_horneadas')">
+                    <img src="https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Manzanas">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('manzanas_horneadas')">Manzanas horneadas con canela y yogur griego</h3>
+                        <p style="font-size: 13px; color: #666;">Dulce natural reconfortante sin azúcares añadidos.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 20 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <!-- BEBIDAS (15 al 17) -->
             <article class="recipe-card" data-category="bebidas" data-title="batido de guayaba espinaca yogur y chia">
                 <div class="recipe-img-container" onclick="openModal('batido_guayaba')">
-                    <img src="https://placehold.co/600x400/png" class="recipe-img" alt="Bebida">
+                    <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bebida">
                 </div>
                 <div class="recipe-content">
                     <div>
@@ -303,16 +398,41 @@
                         <h3 class="recipe-title serif" onclick="openModal('batido_guayaba')">Batido de guayaba, espinaca, yogur y chía</h3>
                         <p style="font-size: 13px; color: #666;">Hidratación funcional repleta de vitamina C.</p>
                     </div>
-                    <div class="recipe-meta">
-                        <span>⏱️ 5 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 vaso</span>
+                    <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="bebidas" data-title="jugo verde de zanahoria naranja y jengibre">
+                <div class="recipe-img-container" onclick="openModal('jugo_verde')">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Jugo">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('jugo_verde')">Jugo verde de zanahoria, naranja y jengibre</h3>
+                        <p style="font-size: 13px; color: #666;">Vitamina A pura para la agudeza visual.</p>
                     </div>
+                    <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="bebidas" data-title="batido antioxidante de frutos rojos con espinaca y bebida vegetal">
+                <div class="recipe-img-container" onclick="openModal('batido_antioxidante')">
+                    <img src="https://images.unsplash.com/photo-1505253716302-afdea603c4f0?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Batido">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('batido_antioxidante')">Batido antioxidante de frutos rojos con espinaca</h3>
+                        <p style="font-size: 13px; color: #666;">Protección celular avanzada frente al daño oxidativo.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
                 </div>
             </article>
         </div>
     </main>
 
-    <!-- Modal Detallado de Receta (Con esquinas suavemente redondeadas en .modal-box) -->
+    <!-- Modal Detallado de Receta -->
     <div id="recipeModal" onclick="if(event.target === this) closeModal()">
         <div class="modal-box" id="modalContentContainer">
             <!-- Contenido dinámico inyectado por JS -->
@@ -333,100 +453,13 @@
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
+                img: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80",
                 desc: "Una combinación equilibrada perfecta para iniciar el día protegiendo la mácula gracias al aporte de luteína, zeaxantina y grasas monoinsaturadas esenciales.",
-                ingredients: [
-                    "1 arepa de maíz integral o mote",
-                    "1 huevo campesino fresco",
-                    "1/4 de aguacate Hass en láminas",
-                    "1 taza de hojas de espinaca fresca",
-                    "Pizca de sal marina y orégano"
-                ],
+                ingredients: ["1 arepa de maíz integral o mote", "1 huevo campesino fresco", "1/4 de aguacate Hass en láminas", "1 taza de hojas de espinaca fresca", "Pizca de sal marina y orégano"],
                 steps: [
                     "<b>Paso 1: Dorar la arepa.</b> Calienta la arepa integral en una sartén a fuego medio hasta que esté tostada y crujiente por ambos lados.",
                     "<b>Paso 2: Cocinar el huevo.</b> Prepara el huevo a la plancha o pochado según tu preferencia, manteniendo la yema tierna para conservar sus nutrientes.",
                     "<b>Paso 3: Armado final.</b> Coloca sobre la arepa una generosa base de espinaca fresca, el huevo encima y corona con las láminas de aguacate."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
-                ]
-            },
-            'pescado_lentejas': {
-                title: "Pescado a la plancha con lentejas, tomate y aguacate",
-                category: "Almuerzos y cenas",
-                badgeClass: "badge-almuerzos",
-                time: "25 min",
-                portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
-                desc: "Aporte masivo de ácidos grasos EPA/DHA combinados con legumbres colombianas de bajo índice glucémico y alto contenido de hierro y fibra.",
-                ingredients: [
-                    "1 filete de pescado blanco o trucha (150g)",
-                    "1 taza de lentejas cocidas",
-                    "1 tomate maduro en cubos",
-                    "1/4 de aguacate",
-                    "Aceite de oliva virgen extra y limón"
-                ],
-                steps: [
-                    "<b>Paso 1: Preparar legumbres.</b> Mezcla las lentejas cocidas tibias con el tomate fresco picado, chorrito de aceite de oliva y un toque de limón.",
-                    "<b>Paso 2: Sellar el pescado.</b> Cocina el filete de pescado a la plancha con una cucharadita de aceite de oliva por 4 minutos cada lado hasta dorar.",
-                    "<b>Paso 3: Servir.</b> Dispone el pescado sobre la cama de lentejas y acompaña con los cubos de aguacate fresco."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
-                ]
-            },
-            'pudin_chia': {
-                title: "Parfait de guayaba, yogur natural, chía y nueces",
-                category: "Postres",
-                badgeClass: "badge-postres",
-                time: "10 min",
-                portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
-                desc: "Un postre funcional rico en antioxidantes naturales y grasas buenas sin azúcares refinados añadidos, excelente para la salud vascular ocular.",
-                ingredients: [
-                    "1 taza de yogur griego natural sin azúcar",
-                    "2 cucharadas de semillas de chía",
-                    "1/2 taza de pulpa o puré natural de guayaba",
-                    "1 cucharada de nueces picadas"
-                ],
-                steps: [
-                    "<b>Paso 1: Hidratar.</b> Mezcla el yogur con las semillas de chía y deja reposar 5 minutos para activar la fibra.",
-                    "<b>Paso 2: Capas en vaso.</b> En un vaso transparente, alterna capas de la mezcla de yogur con el puré de guayaba natural.",
-                    "<b>Paso 3: Decorar.</b> Espolvorea por encima las nueces picadas para aportar una textura crujiente y grasas saludables."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
-                ]
-            },
-            'batido_guayaba': {
-                title: "Batido de guayaba, espinaca, yogur y chía",
-                category: "Bebidas",
-                badgeClass: "badge-bebidas",
-                time: "5 min",
-                portions: "1 vaso (350 ml)",
-                img: "https://placehold.co/600x400/png",
-                desc: "Bebida revitalizante con alta concentración de vitamina C biodisponible y clorofila para la protección celular contra el estrés oxidativo.",
-                ingredients: [
-                    "1 guayaba madura troceada",
-                    "1 puñado de espinaca fresca",
-                    "1/2 taza de yogur natural o agua",
-                    "1 cucharadita de semillas de chía"
-                ],
-                steps: [
-                    "<b>Paso 1: Licuado base.</b> Agrega al vaso de la licuadora la guayaba troceada, la espinaca limpia y el yogur o agua.",
-                    "<b>Paso 2: Procesar.</b> Licúa a máxima velocidad hasta obtener una textura completamente homogénea y suave.",
-                    "<b>Paso 3: Servir.</b> Vierte en un vaso alto e incorpora la chía al final removiendo suavemente."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
                 ]
             },
             'avena_salada': {
@@ -435,23 +468,13 @@
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
+                img: "https://images.unsplash.com/photo-1517673132405-a56a12b18cef?auto=format&fit=crop&w=600&q=80",
                 desc: "Fibra soluble de avena combinada con micronutrientes oculares en una versión salada reconfortante y de bajo índice glucémico.",
-                ingredients: [
-                    "1/3 taza de avena en hojuelas",
-                    "1 taza de caldo vegetal",
-                    "1 puñado de espinaca",
-                    "1 huevo y aguacate"
-                ],
+                ingredients: ["1/3 taza de avena en hojuelas", "1 taza de caldo vegetal", "1 puñado de espinaca", "1 huevo y aguacate"],
                 steps: [
                     "<b>Paso 1: Cocinar base.</b> Hierve la avena en el caldo vegetal a fuego lento hasta espesar.",
                     "<b>Paso 2: Integrar verde.</b> Agrega la espinaca picada y la chía, mezclando hasta que la hoja se marchite.",
                     "<b>Paso 3: Servir.</b> Coloca el huevo encima y corona con aguacate."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
                 ]
             },
             'arepa_frijol': {
@@ -460,23 +483,13 @@
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
+                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
                 desc: "Combinación de leguminosas colombianas y licopeno con alta densidad nutricional y sostenimiento energético prolongado.",
-                ingredients: [
-                    "1 arepa integral",
-                    "1/2 taza de fríjoles cocidos",
-                    "1 huevo",
-                    "Tomate y aguacate"
-                ],
+                ingredients: ["1 arepa integral", "1/2 taza de fríjoles cocidos", "1 huevo", "Tomate y aguacate"],
                 steps: [
                     "<b>Paso 1: Calentar arepa y fríjoles.</b> Tuesta la arepa y calienta ligeramente los fríjoles.",
                     "<b>Paso 2: Preparar huevo.</b> Cocina el huevo al gusto.",
                     "<b>Paso 3: Montaje.</b> Coloca los fríjoles sobre la arepa, añade el huevo y decora con tomate y aguacate."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
                 ]
             },
             'arepa_rellena': {
@@ -485,23 +498,208 @@
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
-                img: "https://placehold.co/600x400/png",
+                img: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80",
                 desc: "Micronutrientes esenciales y bajo índice glucémico para salud ocular sostenida en una preparación compacta.",
-                ingredients: [
-                    "1 arepa integral",
-                    "1 huevo",
-                    "Champiñones laminados",
-                    "Espinaca"
-                ],
+                ingredients: ["1 arepa integral", "1 huevo", "Champiñones laminados", "Espinaca"],
                 steps: [
                     "<b>Paso 1: Saltear vegetales.</b> Saltea los champiñones y la espinaca.",
                     "<b>Paso 2: Rellenar.</b> Abre la arepa e introduce los vegetales junto con el huevo.",
                     "<b>Paso 3: Servir.</b> Disfruta caliente."
-                ],
-                stepImages: [
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png",
-                    "https://placehold.co/600x400/png"
+                ]
+            },
+            'tostadas_aguacate': {
+                title: "Tostadas integrales con aguacate, huevo pochado y ajonjolí",
+                category: "Desayunos",
+                badgeClass: "badge-desayunos",
+                time: "10 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80",
+                desc: "Excelente fuente de grasas saludables, proteínas y minerales esenciales para arrancar el día con energía.",
+                ingredients: ["2 rebanadas de pan integral", "1/2 aguacate Hass", "1 huevo pochado", "Semillas de ajonjolí"],
+                steps: [
+                    "<b>Paso 1: Tostar el pan.</b> Tuesta las rebanadas de pan integral hasta que estén firmes.",
+                    "<b>Paso 2: Majar el aguacate.</b> Unta el aguacate machacado sobre las tostadas con sal y pimienta.",
+                    "<b>Paso 3: Finalizar.</b> Coloca el huevo pochado encima y espolvorea ajonjolí tostado."
+                ]
+            },
+            'pescado_lentejas': {
+                title: "Pescado a la plancha con lentejas, tomate y aguacate",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "25 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80",
+                desc: "Aporte masivo de ácidos grasos EPA/DHA combinados con legumbres colombianas de bajo índice glucémico y alto contenido de hierro y fibra.",
+                ingredients: ["1 filete de pescado blanco o trucha (150g)", "1 taza de lentejas cocidas", "1 tomate maduro en cubos", "1/4 de aguacate", "Aceite de oliva virgen extra y limón"],
+                steps: [
+                    "<b>Paso 1: Preparar legumbres.</b> Mezcla las lentejas cocidas tibias con el tomate fresco picado, chorrito de aceite de oliva y un toque de limón.",
+                    "<b>Paso 2: Sellar el pescado.</b> Cocina el filete de pescado a la plancha con una cucharadita de aceite de oliva por 4 minutos cada lado hasta dorar.",
+                    "<b>Paso 3: Servir.</b> Dispone el pescado sobre la cama de lentejas y acompaña con los cubos de aguacate fresco."
+                ]
+            },
+            'salmon_horno': {
+                title: "Salmón al horno con puré de zanahoria y espárragos",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "30 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80",
+                desc: "Rico en betacarotenos y ácidos grasos ideales para la salud visual y el mantenimiento de la retina.",
+                ingredients: ["1 filete de salmón", "2 zanahorias medianas", "Un manojo de espárragos", "Aceite de oliva y especias"],
+                steps: [
+                    "<b>Paso 1: Cocinar zanahoria.</b> Hierve o cuece al vapor las zanahorias y procésalas hasta obtener un puré suave.",
+                    "<b>Paso 2: Hornear.</b> Hornea el salmón junto con los espárragos a 180°C durante 15 minutos.",
+                    "<b>Paso 3: Emplatar.</b> Sirve el salmón acompañado del puré y los espárragos crujientes."
+                ]
+            },
+            'pollo_quinoa': {
+                title: "Pechuga de pollo en julianas con quinua y vegetales mixtos",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "25 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=600&q=80",
+                desc: "Proteína limpia y quinua rica en aminoácidos esenciales que favorecen el bienestar general.",
+                ingredients: ["1 pechuga de pollo en julianas", "1/2 taza de quinua cocida", "Vegetales al gusto (zucchini, pimentón)"],
+                steps: [
+                    "<b>Paso 1: Saltear pollo.</b> Cocina las julianas de pollo en una sartén con especias al gusto.",
+                    "<b>Paso 2: Mezclar vegetales.</b> Saltea los vegetales ligeramente.",
+                    "<b>Paso 3: Integrar.</b> Sirve el pollo y los vegetales sobre una cama de quinua tibia."
+                ]
+            },
+            'ensalada_garbanzos': {
+                title: "Ensalada de garbanzos, atún, espinaca y tomate cherry",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "15 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=600&q=80",
+                desc: "Una opción rápida, fresca y repleta de nutrientes protectores para la visión.",
+                ingredients: ["1 taza de garbanzos cocidos", "1 lata de atún en agua", "Espinaca fresca", "Tomates cherry"],
+                steps: [
+                    "<b>Paso 1: Combinar ingredientes.</b> En un bol amplio, mezcla los garbanzos, el atún escurrido y la espinaca.",
+                    "<b>Paso 2: Agregar tomates.</b> Incorpora los tomates cherry cortados por la mitad.",
+                    "<b>Paso 3: Aderezar.</b> Añade aceite de oliva, sal marina y exprime limón al gusto."
+                ]
+            },
+            'truf_mango': {
+                title: "Trucha asada con ensalada fresca de aguacate y mango",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "25 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80",
+                desc: "Contraste perfecto de sabores tropicales y ácidos grasos esenciales protectores oculares.",
+                ingredients: ["1 filete de trucha", "1/2 mango biche o maduro en cubos", "1/4 de aguacate", "Cilantro y limón"],
+                steps: [
+                    "<b>Paso 1: Asar trucha.</b> Cocina la trucha a la plancha hasta que esté dorada por ambos lados.",
+                    "<b>Paso 2: Preparar ensalada.</b> Mezcla los cubos de mango y aguacate con cilantro picado y limón.",
+                    "<b>Paso 3: Servir.</b> Acompaña la trucha con la ensalada fresca."
+                ]
+            },
+            'bowl_lentejas': {
+                title: "Bowl de lentejas con trozos de pollo y aguacate",
+                category: "Almuerzos y cenas",
+                badgeClass: "badge-almuerzos",
+                time: "20 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80",
+                desc: "Un plato reconfortante, lleno de texturas y nutrientes de alta calidad.",
+                ingredients: ["1 taza de lentejas cocidas", "100g de pollo desmenuzado", "1/4 de aguacate", "Tomate picado"],
+                steps: [
+                    "<b>Paso 1: Base de lentejas.</b> Coloca las lentejas calientes en un bol hondo.",
+                    "<b>Paso 2: Añadir pollo.</b> Distribuye el pollo desmenuzado encima.",
+                    "<b>Paso 3: Decorar.</b> Agrega el aguacate y el tomate fresco."
+                ]
+            },
+            'pudin_chia': {
+                title: "Parfait de guayaba, yogur natural, chía y nueces",
+                category: "Postres",
+                badgeClass: "badge-postres",
+                time: "10 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80",
+                desc: "Un postre funcional rico en antioxidantes naturales y grasas buenas sin azúcares refinados añadidos, excelente para la salud vascular ocular.",
+                ingredients: ["1 taza de yogur griego natural sin azúcar", "2 cucharadas de semillas de chía", "1/2 taza de pulpa o puré natural de guayaba", "1 cucharada de nueces picadas"],
+                steps: [
+                    "<b>Paso 1: Hidratar.</b> Mezcla el yogur con las semillas de chía y deja reposar 5 minutos para activar la fibra.",
+                    "<b>Paso 2: Capas en vaso.</b> En un vaso transparente, alterna capas de la mezcla de yogur con el puré de guayaba natural.",
+                    "<b>Paso 3: Decorar.</b> Espolvorea por encima las nueces picadas para aportar una textura crujiente y grasas saludables."
+                ]
+            },
+            'pudin_frutos': {
+                title: "Pudín de chía con frutos rojos y almendras",
+                category: "Postres",
+                badgeClass: "badge-postres",
+                time: "10 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1505253716302-afdea603c4f0?auto=format&fit=crop&w=600&q=80",
+                desc: "Antioxidantes potentes en un postre cremoso y saludable.",
+                ingredients: ["3 cdas de chía", "1 taza de leche vegetal", "Frutos rojos", "Almendras laminadas"],
+                steps: [
+                    "<b>Paso 1: Mezclar base.</b> Remueve la chía con la leche vegetal y refrigera por 2 horas.",
+                    "<b>Paso 2: Montar.</b> Coloca los frutos rojos por encima.",
+                    "<b>Paso 3: Terminar.</b> Agrega almendras laminadas tostadas."
+                ]
+            },
+            'manzanas_horneadas': {
+                title: "Manzanas horneadas con canela y yogur griego",
+                category: "Postres",
+                badgeClass: "badge-postres",
+                time: "20 min",
+                portions: "1 porción",
+                img: "https://images.unsplash.com/photo-1568571780765-9276ac8b75a2?auto=format&fit=crop&w=600&q=80",
+                desc: "Una opción caliente y dulce de manera natural.",
+                ingredients: ["1 manzana", "Canela en polvo", "1 cda de yogur griego"],
+                steps: [
+                    "<b>Paso 1: Preparar manzana.</b> Descorazona la manzana y espolvorea canela.",
+                    "<b>Paso 2: Hornear.</b> Lleva al horno a 180°C por 15 minutos hasta que esté tierna.",
+                    "<b>Paso 3: Servir.</b> Acompaña con una cucharada de yogur griego."
+                ]
+            },
+            'batido_guayaba': {
+                title: "Batido de guayaba, espinaca, yogur y chía",
+                category: "Bebidas",
+                badgeClass: "badge-bebidas",
+                time: "5 min",
+                portions: "1 vaso (350 ml)",
+                img: "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80",
+                desc: "Bebida revitalizante con alta concentración de vitamina C biodisponible y clorofila para la protección celular contra el estrés oxidativo.",
+                ingredients: ["1 guayaba madura troceada", "1 puñado de espinaca fresca", "1/2 taza de yogur natural o agua", "1 cucharadita de semillas de chía"],
+                steps: [
+                    "<b>Paso 1: Licuado base.</b> Agrega al vaso de la licuadora la guayaba troceada, la espinaca limpia y el yogur o agua.",
+                    "<b>Paso 2: Procesar.</b> Licúa a máxima velocidad hasta obtener una textura completamente homogénea y suave.",
+                    "<b>Paso 3: Servir.</b> Vierte en un vaso alto e incorpora la chía al final removiendo suavemente."
+                ]
+            },
+            'jugo_verde': {
+                title: "Jugo verde de zanahoria, naranja y jengibre",
+                category: "Bebidas",
+                badgeClass: "badge-bebidas",
+                time: "5 min",
+                portions: "1 vaso",
+                img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80",
+                desc: "Vitaminas y defensas en un solo vaso energizante.",
+                ingredients: ["1 zanahoria", "Jugo de 2 naranjas", "Un toque de jengibre"],
+                steps: [
+                    "<b>Paso 1: Licuar.</b> Procesa la zanahoria troceada junto con el jugo de naranja y el jengibre.",
+                    "<b>Paso 2: Colar opcional.</b> Cuela si prefieres una textura más ligera.",
+                    "<b>Paso 3: Servir.</b> Disfruta recién hecho."
+                ]
+            },
+            'batido_antioxidante': {
+                title: "Batido antioxidante de frutos rojos con espinaca",
+                category: "Bebidas",
+                badgeClass: "badge-bebidas",
+                time: "5 min",
+                portions: "1 vaso",
+                img: "https://images.unsplash.com/photo-1505253716302-afdea603c4f0?auto=format&fit=crop&w=600&q=80",
+                desc: "Poderosa carga de antioxidantes para proteger tu salud visual.",
+                ingredients: ["1 taza de frutos rojos", "1 puñado de espinaca", "1 taza de bebida de almendras"],
+                steps: [
+                    "<b>Paso 1: Añadir ingredientes.</b> Coloca los frutos rojos, la espinaca y la bebida de almendras en la licuadora.",
+                    "<b>Paso 2: Licuar.</b> Mezcla hasta integrar por completo.",
+                    "<b>Paso 3: Servir.</b> Sirve frío en vaso alto."
                 ]
             }
         };
@@ -544,7 +742,9 @@
             const carousel = document.getElementById('carouselWrapper');
             const cards = document.querySelectorAll('.recipe-card');
             const sectionTitle = document.getElementById('sectionTitle');
+            const searchInput = document.getElementById('searchInput');
 
+            searchInput.value = '';
             carousel.classList.add('hidden');
 
             if (category === 'todos') {
@@ -601,15 +801,7 @@
                     <div class="box-section">
                         <h3 class="serif" style="font-size: 18px; margin-bottom: 12px; color: #1E5128;">Preparación Paso a Paso</h3>
                         <ol>
-                            ${recipe.steps.map((step, idx) => `
-                                <li style="margin-bottom: 14px;">
-                                    ${step}${recipe.stepImages && recipe.stepImages[idx] ? `
-                                        <div style="margin-top: 6px;">
-                                            <img src="${recipe.stepImages[idx]}" class="step-thumb" alt="Paso ${idx+1}">
-                                        </div>
-                                    ` : ''}
-                                </li>
-                            `).join('')}
+                            ${recipe.steps.map(step => `<li style="margin-bottom: 14px;">${step}</li>`).join('')}
                         </ol>
                     </div>
                 </div>
