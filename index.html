@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recetas Funcionales</title>
-    <!-- Carga segura de Tailwind CSS -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Open Sans', sans-serif; }
         h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        /* Ocultar barra de desplazamiento en el carrusel manteniendo funcionalidad táctil */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-stone-50 text-stone-900 min-h-screen flex flex-col">
 
-    <!-- Header Profesional Estilo Good Food -->
+    <!-- Header Estilo BBC Good Food -->
     <header class="bg-white border-b border-stone-200 sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             
-            <!-- Botón Menú y Título -->
+            <!-- Menú hamburguesa y Título -->
             <div class="flex items-center space-x-4">
                 <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-stone-100 text-stone-700 transition" aria-label="Menú">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -68,10 +71,74 @@
     </div>
 
     <!-- Contenido Principal Centrado -->
-    <main class="max-w-6xl mx-auto px-4 py-10 flex-grow w-full">
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow w-full">
         
-        <div class="mb-8 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
-            <h2 id="sectionTitle" class="text-2xl sm:text-3xl font-bold text-stone-900">Nuestras Recetas</h2>
+        <!-- Sección de Carrusel Destacado -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-serif text-2xl font-bold text-stone-900">Recetas Destacadas</h2>
+                <div class="flex gap-2">
+                    <button onclick="scrollCarousel(-1)" class="w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center font-bold text-stone-700 transition">‹</button>
+                    <button onclick="scrollCarousel(1)" class="w-9 h-9 rounded-full bg-stone-200 hover:bg-stone-300 flex items-center justify-center font-bold text-stone-700 transition">›</button>
+                </div>
+            </div>
+            <!-- Contenedor Carrusel Horizontal -->
+            <div id="carouselContainer" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth pb-4 px-1">
+                
+                <!-- Slide 1 -->
+                <div onclick="openModal('arepa_huevo')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
+                    <div class="h-48 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80" alt="Arepa" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded">Desayunos</span>
+                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Arepa integral con huevo, aguacate y espinaca</h3>
+                        <p class="text-xs text-stone-500 mt-1">⏱️ 15 min • 1 porción</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div onclick="openModal('pescado_lentejas')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
+                    <div class="h-48 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Pescado" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2 py-0.5 rounded">Almuerzos y cenas</span>
+                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Pescado a la plancha con lentejas y aguacate</h3>
+                        <p class="text-xs text-stone-500 mt-1">⏱️ 25 min • 1 porción</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div onclick="openModal('pudin_chia')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
+                    <div class="h-48 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Postre" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2 py-0.5 rounded">Postres</span>
+                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Pudín de chía y puré de mango</h3>
+                        <p class="text-xs text-stone-500 mt-1">⏱️ 15 min + reposo • 1 porción</p>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div onclick="openModal('smoothie_verde')" class="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition cursor-pointer flex-shrink-0 group">
+                    <div class="h-48 overflow-hidden bg-stone-100">
+                        <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80" alt="Bebida" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 rounded">Bebidas</span>
+                        <h3 class="font-serif text-lg font-bold mt-2 text-stone-900 group-hover:text-emerald-700 transition line-clamp-1">Smoothie verde protector</h3>
+                        <p class="text-xs text-stone-500 mt-1">⏱️ 5 min • 1 porción</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Título del Catálogo -->
+        <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-stone-200 pb-4 gap-2">
+            <h2 id="sectionTitle" class="text-2xl font-bold text-stone-900 font-serif">Todas las Recetas</h2>
             <span id="activeBadge" class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Catálogo Completo</span>
         </div>
 
@@ -93,7 +160,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
                         <span>⏱️ 15 min</span>
-                        <button onclick="openModal('arepa_huevo')" class="font-bold text-emerald-700 hover:underline">Ver receta →</button>
+                        <span class="text-emerald-700 font-semibold">1 porción</span>
                     </div>
                 </div>
             </article>
@@ -113,7 +180,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
                         <span>⏱️ 25 min</span>
-                        <button onclick="openModal('pescado_lentejas')" class="font-bold text-emerald-700 hover:underline">Ver receta →</button>
+                        <span class="text-emerald-700 font-semibold">1 porción</span>
                     </div>
                 </div>
             </article>
@@ -133,7 +200,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
                         <span>⏱️ 15 min + reposo</span>
-                        <button onclick="openModal('pudin_chia')" class="font-bold text-emerald-700 hover:underline">Ver receta →</button>
+                        <span class="text-emerald-700 font-semibold">1 porción</span>
                     </div>
                 </div>
             </article>
@@ -153,7 +220,7 @@
                     </div>
                     <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500 font-medium">
                         <span>⏱️ 5 min</span>
-                        <button onclick="openModal('smoothie_verde')" class="font-bold text-emerald-700 hover:underline">Ver receta →</button>
+                        <span class="text-emerald-700 font-semibold">1 porción</span>
                     </div>
                 </div>
             </article>
@@ -321,12 +388,18 @@
             document.getElementById('sideMenu').classList.toggle('hidden');
         }
 
+        // Control del Carrusel
+        function scrollCarousel(direction) {
+            const container = document.getElementById('carouselContainer');
+            container.scrollBy({ left: direction * 320, behavior: 'smooth' });
+        }
+
         function filterCategory(cat) {
             const cards = document.querySelectorAll('.recipe-card');
             const title = document.getElementById('sectionTitle');
             const badge = document.getElementById('activeBadge');
             
-            const names = { todos: "Nuestras Recetas", desayunos: "Desayunos", almuerzos: "Almuerzos y Cenas", postres: "Postres", bebidas: "Bebidas" };
+            const names = { todos: "Todas las Recetas", desayunos: "Desayunos", almuerzos: "Almuerzos y Cenas", postres: "Postres", bebidas: "Bebidas" };
             title.textContent = names[cat] || "Recetas";
             badge.textContent = cat.toUpperCase();
 
@@ -360,7 +433,7 @@
                     card.style.display = 'none';
                 }
             });
-            document.getElementById('sectionTitle').textContent = term ? `Resultados para: "${term}"` : "Nuestras Recetas";
+            document.getElementById('sectionTitle').textContent = term ? `Resultados para: "${term}"` : "Todas las Recetas";
             document.getElementById('noResults').classList.toggle('hidden', visible > 0);
         });
 
