@@ -3,123 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recetario Funcional | Estilo Directo al Paladar</title>
+    <title>Recetas Funcionales</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Estilo Editorial / Revista Profesional -->
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .font-serif { font-family: 'Merriweather', serif; }
+        body { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
     </style>
 </head>
-<body class="bg-[#F8F6F0] text-stone-900 min-h-screen flex flex-col antialiased selection:bg-orange-200 selection:text-orange-900">
+<body class="bg-white text-stone-900 min-h-screen flex flex-col antialiased selection:bg-emerald-100 selection:text-emerald-900">
 
-    <!-- Header Estilo Blog Gastronómico Profesional -->
+    <!-- Header Estilo BBC Good Food -->
     <header class="bg-white border-b border-stone-200 sticky top-0 z-40 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center gap-4">
-            <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
-                <div class="w-10 h-10 rounded-full bg-orange-700 text-white flex items-center justify-center font-serif font-bold text-xl shadow-sm">D</div>
-                <div>
-                    <h1 class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-stone-900">Recetario Funcional</h1>
-                    <p class="text-xs text-stone-500 uppercase tracking-widest font-semibold">Gastronomía y Salud Visual</p>
+            
+            <!-- Menú hamburguesa y Título -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleMenu()" class="text-stone-800 hover:text-emerald-700 focus:outline-none p-1" aria-label="Abrir menú">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+                <h1 onclick="resetView()" class="text-2xl sm:text-3xl font-bold tracking-tight text-stone-950 cursor-pointer hover:opacity-80 transition">
+                    Recetas funcionales
+                </h1>
+            </div>
+
+            <!-- Ícono de usuario / Perfil -->
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-stone-100 border border-stone-300 flex items-center justify-center text-stone-700 font-bold hover:bg-stone-200 transition cursor-pointer">
+                    👤
                 </div>
             </div>
-            <!-- Buscador Profesional -->
-            <div class="w-full max-w-xs sm:max-w-sm relative">
-                <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400">🔍</span>
-                <input type="text" id="searchInput" placeholder="Buscar receta, ingrediente..." 
-                    class="w-full pl-10 pr-4 py-2 text-sm bg-stone-100 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 focus:bg-white transition">
+        </div>
+
+        <!-- Barra de Búsqueda Estilo GoodFood -->
+        <div class="bg-stone-50 border-t border-stone-200 py-3 px-4">
+            <div class="max-w-3xl mx-auto relative">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-stone-400">🔍</span>
+                <input type="text" id="searchInput" placeholder="Recipes, guides and more..." 
+                    class="w-full pl-11 pr-4 py-2.5 text-sm bg-white border border-stone-300 rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-700 transition shadow-inner">
             </div>
         </div>
     </header>
 
-    <!-- Barra de Categorías / Menú de Navegación -->
-    <nav class="bg-white border-b border-stone-200 sticky top-20 z-30 shadow-2xs">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex overflow-x-auto no-scrollbar py-3 gap-2 sm:gap-4 justify-start sm:justify-center">
-            <button onclick="filterCategory('todos')" class="category-btn whitespace-nowrap px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-stone-900 text-white transition shadow-2xs">Todas</button>
-            <button onclick="filterCategory('desayunos')" class="category-btn whitespace-nowrap px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition">☀️ Desayunos</button>
-            <button onclick="filterCategory('almuerzos')" class="category-btn whitespace-nowrap px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition">🍲 Almuerzos y cenas</button>
-            <button onclick="filterCategory('postres')" class="category-btn whitespace-nowrap px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition">🧁 Postres</button>
-            <button onclick="filterCategory('bebidas')" class="category-btn whitespace-nowrap px-4 py-1.5 text-xs sm:text-sm font-semibold rounded-full bg-stone-100 text-stone-700 hover:bg-stone-200 transition">🍵 Bebidas</button>
+    <!-- Menú Desplegable Lateral (Drawer) -->
+    <div id="sideMenu" class="fixed inset-0 bg-stone-900/50 backdrop-blur-xs z-50 hidden transition-opacity">
+        <div class="bg-white w-80 max-w-[85vw] h-full shadow-2xl p-6 flex flex-col justify-between transform transition-transform">
+            <div>
+                <div class="flex justify-between items-center mb-8 border-b border-stone-200 pb-4">
+                    <h2 class="font-bold text-xl text-stone-900">Menú de Recetas</h2>
+                    <button onclick="toggleMenu()" class="text-stone-500 hover:text-stone-900 text-xl font-bold p-1">✕</button>
+                </div>
+                <nav class="space-y-3 font-semibold text-stone-700">
+                    <button onclick="filterCategory('todos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center justify-between"><span>Todas las recetas</span> <span>→</span></button>
+                    <button onclick="filterCategory('desayunos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center justify-between"><span>1. Desayunos</span> <span>→</span></button>
+                    <button onclick="filterCategory('almuerzos'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center justify-between"><span>2. Almuerzos y cenas</span> <span>→</span></button>
+                    <button onclick="filterCategory('postres'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center justify-between"><span>3. Postres</span> <span>→</span></button>
+                    <button onclick="filterCategory('bebidas'); toggleMenu();" class="w-full text-left px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-800 transition flex items-center justify-between"><span>4. Bebidas</span> <span>→</span></button>
+                </nav>
+            </div>
+            <div class="text-xs text-stone-400 text-center pb-4">
+                Salud visual y bienestar integral
+            </div>
         </div>
-    </nav>
+    </div>
 
     <!-- Contenido Principal Centrado -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
-        <div class="mb-8 border-l-4 border-orange-700 pl-4">
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900">Últimas Recetas Publicadas</h2>
-            <p class="text-stone-600 text-sm mt-1">Explora preparaciones estructuradas con rigor culinario y enfoque en el bienestar visual.</p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+        
+        <div class="mb-6 flex justify-between items-center border-b border-stone-200 pb-4">
+            <h2 id="sectionTitle" class="text-2xl sm:text-3xl font-bold text-stone-900">Nuestras Recetas</h2>
+            <span id="activeCategoryBadge" class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Catálogo Completo</span>
         </div>
 
-        <!-- Grid de Tarjetas de Recetas (Centrado y Simétrico) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="recipesGrid">
+        <!-- Grid de Recetas (Centrado y Adaptativo) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center" id="recipesGrid">
             
-            <!-- Receta 1: Desayunos -->
-            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer w-full max-w-sm" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca" onclick="openModal('arepa_huevo')">
-                <div class="relative overflow-hidden h-52 bg-stone-100">
-                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" alt="Arepa integral" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider bg-orange-700 text-white px-2.5 py-1 rounded shadow-xs">Desayunos</span>
+            <!-- Receta 1: Desayuno -->
+            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col w-full max-w-sm" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
+                <div class="overflow-hidden h-60 bg-stone-100 cursor-pointer" onclick="openRecipeModal('arepa_huevo')">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=700&q=80" alt="Arepa integral" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2 font-medium">
-                        <span>⏱️ 15 min</span>
-                        <span>👥 1 porción</span>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded">Desayunos</span>
+                        <h3 onclick="openRecipeModal('arepa_huevo')" class="font-serif text-xl font-bold mt-2 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
+                            Arepa integral con huevo, aguacate y espinaca
+                        </h3>
+                        <p class="text-stone-600 text-xs sm:text-sm line-clamp-2">Una combinación nutritiva de maíz integral, hoja verde y grasas saludables para iniciar el día.</p>
                     </div>
-                    <h3 class="font-serif text-lg font-bold mb-2 text-stone-900 group-hover:text-orange-700 transition leading-snug">Arepa Integral con Huevo, Aguacate y Espinaca</h3>
-                    <p class="text-stone-600 text-xs sm:text-sm mb-4 flex-grow line-clamp-2 leading-relaxed">Una opción matutina cargada de texturas, combinando maíz integral, hoja verde salteada y grasas saludables.</p>
-                    <div class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-lg text-center hover:bg-orange-700 transition text-xs uppercase tracking-wider">Ver receta completa</div>
+                    <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
+                        <span>⏱️ 15 min</span>
+                        <button onclick="openRecipeModal('arepa_huevo')" class="font-semibold text-emerald-700 hover:underline">Ver receta →</button>
+                    </div>
                 </div>
             </article>
 
             <!-- Receta 2: Almuerzos y cenas -->
-            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer w-full max-w-sm" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate" onclick="openModal('pescado_lentejas')">
-                <div class="relative overflow-hidden h-52 bg-stone-100">
-                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" alt="Pescado a la plancha" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider bg-emerald-700 text-white px-2.5 py-1 rounded shadow-xs">Almuerzos y cenas</span>
+            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col w-full max-w-sm" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
+                <div class="overflow-hidden h-60 bg-stone-100 cursor-pointer" onclick="openRecipeModal('pescado_lentejas')">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=700&q=80" alt="Pescado a la plancha" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2 font-medium">
-                        <span>⏱️ 25 min</span>
-                        <span>👥 1 porción</span>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded">Almuerzos y cenas</span>
+                        <h3 onclick="openRecipeModal('pescado_lentejas')" class="font-serif text-xl font-bold mt-2 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
+                            Pescado a la plancha con lentejas, tomate y aguacate
+                        </h3>
+                        <p class="text-stone-600 text-xs sm:text-sm line-clamp-2">Aporte clave de omega-3 y fibra vegetal en un plato completo y equilibrado.</p>
                     </div>
-                    <h3 class="font-serif text-lg font-bold mb-2 text-stone-900 group-hover:text-orange-700 transition leading-snug">Pescado a la Plancha con Lentejas y Aguacate</h3>
-                    <p class="text-stone-600 text-xs sm:text-sm mb-4 flex-grow line-clamp-2 leading-relaxed">Pescado fresco de temporada acompañado de una menestra ligera de lentejas, tomate fresco y cubos de aguacate.</p>
-                    <div class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-lg text-center hover:bg-orange-700 transition text-xs uppercase tracking-wider">Ver receta completa</div>
+                    <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
+                        <span>⏱️ 25 min</span>
+                        <button onclick="openRecipeModal('pescado_lentejas')" class="font-semibold text-emerald-700 hover:underline">Ver receta →</button>
+                    </div>
                 </div>
             </article>
 
             <!-- Receta 3: Postres -->
-            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer w-full max-w-sm" data-category="postres" data-title="pudín de chía y mango tropical" onclick="openModal('pudin_chia')">
-                <div class="relative overflow-hidden h-52 bg-stone-100">
-                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" alt="Pudín de chía" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider bg-rose-700 text-white px-2.5 py-1 rounded shadow-xs">Postres</span>
+            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col w-full max-w-sm" data-category="postres" data-title="pudín de chía y puré de mango">
+                <div class="overflow-hidden h-60 bg-stone-100 cursor-pointer" onclick="openRecipeModal('pudin_chia')">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=80" alt="Pudín de chía" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2 font-medium">
-                        <span>⏱️ 15 min + reposo</span>
-                        <span>👥 1 porción</span>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-rose-700 bg-rose-50 px-2.5 py-0.5 rounded">Postres</span>
+                        <h3 onclick="openRecipeModal('pudin_chia')" class="font-serif text-xl font-bold mt-2 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
+                            Pudín de chía y puré de mango
+                        </h3>
+                        <p class="text-stone-600 text-xs sm:text-sm line-clamp-2">Opción dulce sin azúcares añadidos, rica en betacarotenos y textura cremosa.</p>
                     </div>
-                    <h3 class="font-serif text-lg font-bold mb-2 text-stone-900 group-hover:text-orange-700 transition leading-snug">Pudín de Chía y Puré de Mango</h3>
-                    <p class="text-stone-600 text-xs sm:text-sm mb-4 flex-grow line-clamp-2 leading-relaxed">Un postre suave, sin azúcares añadidos, con notas tropicales que aportan betacarotenos y textura cremosa.</p>
-                    <div class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-lg text-center hover:bg-orange-700 transition text-xs uppercase tracking-wider">Ver receta completa</div>
+                    <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
+                        <span>⏱️ 15 min + reposo</span>
+                        <button onclick="openRecipeModal('pudin_chia')" class="font-semibold text-emerald-700 hover:underline">Ver receta →</button>
+                    </div>
                 </div>
             </article>
 
             <!-- Receta 4: Bebidas -->
-            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer w-full max-w-sm" data-category="bebidas" data-title="smoothie verde protector de espinaca y limon" onclick="openModal('smoothie_verde')">
-                <div class="relative overflow-hidden h-52 bg-stone-100">
-                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Smoothie verde" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    <span class="absolute top-3 left-3 text-[11px] font-bold uppercase tracking-wider bg-teal-700 text-white px-2.5 py-1 rounded shadow-xs">Bebidas</span>
+            <article class="recipe-card bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col w-full max-w-sm" data-category="bebidas" data-title="smoothie verde protector">
+                <div class="overflow-hidden h-60 bg-stone-100 cursor-pointer" onclick="openRecipeModal('smoothie_verde')">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=700&q=80" alt="Smoothie verde" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="p-5 flex flex-col flex-grow">
-                    <div class="flex items-center justify-between text-xs text-stone-500 mb-2 font-medium">
-                        <span>⏱️ 5 min</span>
-                        <span>👥 1 porción</span>
+                <div class="p-5 flex flex-col flex-grow justify-between">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded">Bebidas</span>
+                        <h3 onclick="openRecipeModal('smoothie_verde')" class="font-serif text-xl font-bold mt-2 mb-2 text-stone-900 hover:text-emerald-700 transition cursor-pointer leading-snug">
+                            Smoothie verde protector
+                        </h3>
+                        <p class="text-stone-600 text-xs sm:text-sm line-clamp-2">Bebida hidratante con hojas verdes y un toque cítrico para nutrir tu día.</p>
                     </div>
-                    <h3 class="font-serif text-lg font-bold mb-2 text-stone-900 group-hover:text-orange-700 transition leading-snug">Smoothie Verde Protector</h3>
-                    <p class="text-stone-600 text-xs sm:text-sm mb-4 flex-grow line-clamp-2 leading-relaxed">Bebida refrescante elaborada con base de hojas verdes, manzana y un toque cítrico para hidratar y nutrir.</p>
-                    <div class="w-full py-2.5 bg-stone-900 text-white font-medium rounded-lg text-center hover:bg-orange-700 transition text-xs uppercase tracking-wider">Ver receta completa</div>
+                    <div class="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs text-stone-500">
+                        <span>⏱️ 5 min</span>
+                        <button onclick="openRecipeModal('smoothie_verde')" class="font-semibold text-emerald-700 hover:underline">Ver receta →</button>
+                    </div>
                 </div>
             </article>
 
@@ -127,38 +166,36 @@
 
         <!-- Mensaje sin resultados -->
         <div id="noResults" class="hidden text-center py-20">
-            <p class="text-stone-500 text-base">No hemos encontrado ninguna receta que coincida con tu búsqueda.</p>
-            <button onclick="resetFilters()" class="mt-3 text-sm text-orange-700 font-semibold underline">Mostrar todas las recetas</button>
+            <p class="text-stone-500 text-lg">No encontramos ninguna receta con ese término.</p>
+            <button onclick="resetView()" class="mt-3 text-sm text-emerald-700 font-semibold underline">Ver todas las recetas</button>
         </div>
     </main>
 
-    <!-- Modal Detalle de Receta (Estilo Artículo Directo al Paladar) -->
+    <!-- Modal de Receta Completa -->
     <div id="recipeModal" class="fixed inset-0 bg-stone-900/70 backdrop-blur-xs z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[92vh] overflow-y-auto relative shadow-2xl border border-stone-200 my-auto">
-            <button onclick="closeModal()" class="sticky top-4 float-right mr-4 mt-4 z-20 bg-white/90 hover:bg-stone-100 text-stone-800 rounded-full w-9 h-9 flex items-center justify-center font-bold text-base shadow-md border border-stone-200 transition">✕</button>
+            <button onclick="closeRecipeModal()" class="sticky top-4 float-right mr-4 mt-4 z-20 bg-white/90 hover:bg-stone-100 text-stone-800 rounded-full w-9 h-9 flex items-center justify-center font-bold text-base shadow-md border border-stone-200 transition">✕</button>
             <div id="modalContent" class="p-6 sm:p-10">
-                <!-- Se inyecta dinámicamente -->
+                <!-- Contenido dinámico inyectado por JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Footer Profesional -->
-    <footer class="bg-white border-t border-stone-200 py-8 text-center text-xs text-stone-500 mt-auto">
-        <p class="font-medium">Recetario Funcional • Inspirado en Directo al Paladar</p>
-        <p class="mt-1 text-stone-400">Una propuesta culinaria orientada al bienestar y la cocina cotidiana.</p>
+    <!-- Footer -->
+    <footer class="bg-stone-100 border-t border-stone-200 py-8 text-center text-xs text-stone-500 mt-auto">
+        <p class="font-semibold text-stone-700">Recetas Funcionales • Inspirado en BBC Good Food</p>
+        <p class="mt-1">Alimentación consciente y cocina cotidiana.</p>
     </footer>
 
-    <!-- Lógica JavaScript Interactiva y Robusta -->
+    <!-- Lógica de Programación -->
     <script>
         const recipesData = {
             arepa_huevo: {
-                title: "Arepa Integral con Huevo, Aguacate y Espinaca",
+                title: "Arepa integral con huevo, aguacate y espinaca",
                 category: "Desayunos",
-                time: "15 minutos",
+                time: "15 min",
                 servings: "1 porción",
-                image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
-                prepImage: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=800&q=80",
-                platedImage: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80",
                 ingredients: [
                     "60 g de arepa integral de maíz (1 unidad)",
                     "1 huevo fresco (50 g)",
@@ -166,239 +203,210 @@
                     "40 g de espinaca fresca",
                     "50 g de tomate maduro en cubos",
                     "5 ml de aceite de oliva virgen extra",
-                    "Pimienta negra recién molida y hierbas al gusto"
+                    "Pimienta negra y hierbas al gusto"
                 ],
                 steps: [
-                    "Calentar la arepa en plancha o sartén a fuego medio hasta que quede ligeramente dorada por ambos lados.",
-                    "En una sartén pequeña, añadir el aceite de oliva y saltear la espinaca junto con el tomate durante 2 a 3 minutos.",
-                    "Cocinar el huevo a la plancha o poché según tu preferencia personal.",
-                    "Abrir la arepa ligeramente y disponer encima la cama de espinacas y tomate salteados.",
-                    "Colocar el huevo coronando la preparación y añadir las láminas de aguacate a un costado."
+                    "Calentar la arepa en plancha o sartén a fuego medio hasta que quede dorada.",
+                    "Saltear la espinaca y el tomate con el aceite de oliva durante 2-3 minutos.",
+                    "Cocinar el huevo al punto deseado.",
+                    "Servir la arepa con el aguacate, la espinaca, el tomate y el huevo coronando el plato."
                 ],
-                plating: "Servir en un plato hondo o loza de cerámica rústica. Disponer el huevo centrado sobre el verde de la espinaca, con los abanicos de aguacate bien perfilados al lado y un toque de pimienta negra recién molida."
+                plating: "Disponer la arepa como base, cubrir con los vegetales salteados y el huevo en la parte superior. Acompañar con los abanicos de aguacate al lado."
             },
             pescado_lentejas: {
-                title: "Pescado a la Plancha con Lentejas y Aguacate",
+                title: "Pescado a la plancha con lentejas, tomate y aguacate",
                 category: "Almuerzos y cenas",
-                time: "25 minutos",
+                time: "25 min",
                 servings: "1 porción",
-                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
-                prepImage: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=80",
-                platedImage: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80",
                 ingredients: [
                     "150 g de filete de pescado fresco",
                     "120 g de lentejas cocidas",
                     "60 g de aguacate en cubos",
                     "80 g de tomate picado",
                     "50 g de zanahoria rallada",
-                    "10 ml de aceite de oliva",
-                    "Jugo de 1/2 limón y hierbas aromáticas"
+                    "10 ml de aceite de oliva y jugo de 1/2 limón"
                 ],
                 steps: [
-                    "Sazonar el filete de pescado con jugo de limón, un toque de sal y hierbas finas.",
-                    "Cocinar el pescado a la plancha con unas gotas de aceite de oliva hasta que esté dorado y jugoso por dentro.",
-                    "En un bol, mezclar las lentejas cocidas con el tomate, la zanahoria rallada y los cubos de aguacate.",
-                    "Aliñar la menestra de lentejas con aceite de oliva, unas gotas más de limón y sal al gusto.",
-                    "Servir la menestra templada o fría al lado del filete de pescado recién hecho."
+                    "Sazonar el pescado con limón, sal y hierbas.",
+                    "Cocinar a la plancha hasta que esté dorado y jugoso.",
+                    "Mezclar las lentejas con el tomate, la zanahoria y el aguacate.",
+                    "Aliñar con aceite de oliva y servir junto al pescado."
                 ],
-                plating: "Disponer una base generosa de ensalada de lentejas aliñadas en el centro del plato. Colocar el filete de pescado encima o ligeramente ladeado para dejar ver los colores vivos del tomate y el aguacate. Decorar con una ramita de cilantro fresco."
+                plating: "Colocar la menestra de lentejas colorida al centro del plato y apoyar el filete de pescado encima. Decorar con hierbas frescas."
             },
             pudin_chia: {
-                title: "Pudín de Chía y Puré de Mango",
+                title: "Pudín de chía y puré de mango",
                 category: "Postres",
                 time: "15 min + reposo",
                 servings: "1 porción",
-                image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80",
-                prepImage: "https://images.unsplash.com/photo-1505252585461-04db1eb84625?auto=format&fit=crop&w=800&q=80",
-                platedImage: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80",
                 ingredients: [
                     "3 cucharadas soperas de semillas de chía",
-                    "3/4 de taza de leche vegetal (coco o almendras)",
-                    "1/2 mango maduro triturado en puré",
-                    "Unas gotas de extracto natural de vainilla"
+                    "3/4 de taza de leche vegetal",
+                    "1/2 mango maduro triturado",
+                    "Unas gotas de extracto de vainilla"
                 ],
                 steps: [
-                    "Mezclar en un vaso o frasco de vidrio las semillas de chía con la leche vegetal y el extracto de vainilla.",
-                    "Remover constantemente durante los primeros 5 minutos para evitar que la chía se asiente en el fondo.",
-                    "Llevar a refrigeración durante al menos 2 horas o toda la noche hasta que adquiera consistencia de pudín espeso.",
-                    "Al momento de servir, verter el puré de mango fresco y brillante sobre la capa de chía."
+                    "Mezclar la chía, la leche vegetal y la vainilla en un vaso.",
+                    "Remover constantemente los primeros minutos para evitar grumos.",
+                    "Refrigerar por al menos 2 horas hasta espesar.",
+                    "Cubrir con el puré de mango fresco al momento de servir."
                 ],
-                plating: "Presentar en un vaso de vidrio transparente o copa baja para que se aprecien las capas diferenciadas (el blanco perla de la chía abajo y el naranja intenso del mango arriba). Decorar con un trocito de mango en la superficie."
+                plating: "Servir en vaso de cristal transparente para destacar el contraste entre el blanco de la chía y el naranja brillante del mango."
             },
             smoothie_verde: {
-                title: "Smoothie Verde Protector",
+                title: "Smoothie verde protector",
                 category: "Bebidas",
-                time: "5 minutos",
+                time: "5 min",
                 servings: "1 porción",
-                image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
-                prepImage: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=800&q=80",
-                platedImage: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
+                image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80",
                 ingredients: [
                     "1 taza de hojas de espinaca fresca",
                     "1 manzana verde en trozos",
                     "Jugo de medio limón",
-                    "1 vaso de agua fría o agua de coco",
-                    "Opcional: un toque de jengibre rallado"
+                    "1 vaso de agua fría o agua de coco"
                 ],
                 steps: [
-                    "Lavar minuciosamente las hojas de espinaca y trocear la manzana verde retirando las semillas.",
-                    "Colocar los líquidos primero en la licuadora y luego los sólidos (espinaca, manzana y jengibre).",
-                    "Procesar a velocidad máxima durante 1 minuto hasta obtener una textura tersa, sin grumos ni trozos de hoja.",
-                    "Servir inmediatamente bien frío."
+                    "Lavar muy bien la espinaca y trocear la manzana.",
+                    "Agregar los ingredientes a la licuadora comenzando por los líquidos.",
+                    "Procesar a velocidad alta hasta obtener una textura completamente homogénea.",
+                    "Servir bien frío."
                 ],
-                plating: "Servir en un vaso alto de cristal. Se puede decorar el borde del vaso con una rodaja fina de limón y una pajita ecológica o reutilizable."
+                plating: "Servir en un vaso alto con una rodaja fina de limón en el borde."
             }
         };
 
-        // Función para abrir el modal con diseño editorial estilo Directo al Paladar
-        function openModal(recipeKey) {
-            const recipe = recipesData[recipeKey];
+        // Función para abrir el modal de la receta al hacer clic en el nombre
+        function openRecipeModal(key) {
+            const recipe = recipesData[key];
             if (!recipe) return;
 
-            const content = `
-                <!-- Encabezado del Artículo -->
+            const html = `
                 <div class="mb-6">
-                    <span class="text-xs font-bold uppercase tracking-wider text-orange-700 bg-orange-50 px-3 py-1 rounded">${recipe.category}</span>
-                    <h2 class="font-serif text-2xl sm:text-4xl font-bold text-stone-900 mt-2 mb-3 leading-tight">${recipe.title}</h2>
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded">${recipe.category}</span>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-stone-900 mt-2 mb-3 leading-tight">${recipe.title}</h2>
                     <div class="flex items-center gap-4 text-xs sm:text-sm text-stone-500 font-medium pb-4 border-b border-stone-200">
                         <span>⏱️ Tiempo: <strong>${recipe.time}</strong></span>
                         <span>👥 Rinde: <strong>${recipe.servings}</strong></span>
                     </div>
                 </div>
 
-                <!-- Imagen Principal -->
                 <div class="mb-8 rounded-xl overflow-hidden shadow-sm h-64 sm:h-80 bg-stone-100">
                     <img src="${recipe.image}" alt="${recipe.title}" class="w-full h-full object-cover">
                 </div>
 
-                <!-- Dos Columnas: Ingredientes y Preparación -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-8">
-                    <!-- Ingredientes (Columna Izquierda) -->
-                    <div class="lg:col-span-5 bg-stone-50 p-6 rounded-xl border border-stone-200/80">
-                        <h3 class="font-serif text-lg font-bold text-stone-900 mb-4 pb-2 border-b border-stone-200 flex items-center gap-2">🛒 Ingredientes</h3>
+                    <div class="lg:col-span-5 bg-stone-50 p-6 rounded-xl border border-stone-200">
+                        <h3 class="font-serif text-lg font-bold text-stone-900 mb-4 pb-2 border-b border-stone-200">🛒 Ingredientes</h3>
                         <ul class="space-y-2.5 text-stone-700 text-sm">
-                            ${recipe.ingredients.map(ing => `<li class="flex items-start gap-2"><span class="text-orange-600 font-bold">•</span><span>${ing}</span></li>`).join('')}
+                            ${recipe.ingredients.map(i => `<li class="flex items-start gap-2"><span class="text-emerald-600 font-bold">•</span><span>${i}</span></li>`).join('')}
                         </ul>
                     </div>
-
-                    <!-- Paso a Paso (Columna Derecha) -->
                     <div class="lg:col-span-7">
-                        <h3 class="font-serif text-lg font-bold text-stone-900 mb-4 pb-2 border-b border-stone-200 flex items-center gap-2">👨‍🍳 Paso a paso de la preparación</h3>
+                        <h3 class="font-serif text-lg font-bold text-stone-900 mb-4 pb-2 border-b border-stone-200">👨‍🍳 Preparación</h3>
                         <ol class="space-y-4 text-stone-700 text-sm">
-                            ${recipe.steps.map((step, idx) => `
+                            ${recipe.steps.map((s, idx) => `
                                 <li class="flex gap-3 items-start">
-                                    <span class="font-bold text-white bg-orange-700 text-xs rounded-full w-6 h-6 flex items-center justify-center shrink-0 mt-0.5 shadow-xs">${idx + 1}</span>
-                                    <span class="leading-relaxed">${step}</span>
+                                    <span class="font-bold text-white bg-emerald-700 text-xs rounded-full w-6 h-6 flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+                                    <span class="leading-relaxed">${s}</span>
                                 </li>
                             `).join('')}
                         </ol>
                     </div>
                 </div>
 
-                <!-- Sección Visual de Emplatado y Presentación -->
-                <div class="bg-amber-50/60 border border-amber-200/70 p-6 rounded-xl mb-6">
-                    <h3 class="font-serif text-base font-bold text-stone-900 mb-2 flex items-center gap-2">🍽️ Sugerencia de Emplatado y Presentación Final</h3>
+                <div class="bg-amber-50/60 border border-amber-200/70 p-5 rounded-xl">
+                    <h3 class="font-serif text-base font-bold text-stone-900 mb-1">🍽️ Sugerencia de Emplatado</h3>
                     <p class="text-stone-700 text-sm leading-relaxed">${recipe.plating}</p>
-                </div>
-
-                <!-- Galería visual auxiliar de preparación / emplatado -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="rounded-lg overflow-hidden h-44 bg-stone-100 relative group">
-                        <img src="${recipe.prepImage}" alt="Proceso de preparación" class="w-full h-full object-cover">
-                        <span class="absolute bottom-2 left-2 bg-stone-900/80 text-white text-[10px] px-2 py-0.5 rounded uppercase tracking-wider font-semibold">Proceso culinario</span>
-                    </div>
-                    <div class="rounded-lg overflow-hidden h-44 bg-stone-100 relative group">
-                        <img src="${recipe.platedImage}" alt="Plato emplatado" class="w-full h-full object-cover">
-                        <span class="absolute bottom-2 left-2 bg-stone-900/80 text-white text-[10px] px-2 py-0.5 rounded uppercase tracking-wider font-semibold">Emplatado final</span>
-                    </div>
                 </div>
             `;
 
-            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('modalContent').innerHTML = html;
             document.getElementById('recipeModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        // Cerrar Modal
-        function closeModal() {
+        function closeRecipeModal() {
             document.getElementById('recipeModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
 
-        // Eventos para cerrar con Escape o clic fuera
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
-        });
-        document.getElementById('recipeModal').addEventListener('click', (e) => {
-            if (e.target.id === 'recipeModal') closeModal();
-        });
+        // Menú Lateral (Drawer)
+        function toggleMenu() {
+            const menu = document.getElementById('sideMenu');
+            menu.classList.toggle('hidden');
+        }
 
-        // Filtrado por Categorías
+        // Filtrado por Categoría
         function filterCategory(category) {
             const cards = document.querySelectorAll('.recipe-card');
-            const buttons = document.querySelectorAll('.category-btn');
+            const titleEl = document.getElementById('sectionTitle');
+            const badgeEl = document.getElementById('activeCategoryBadge');
+            
+            let count = 0;
+            const categoryNames = {
+                todos: "Nuestras Recetas",
+                desayunos: "Desayunos",
+                almuerzos: "Almuerzos y Cenas",
+                postres: "Postres",
+                bebidas: "Bebidas"
+            };
 
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-stone-900', 'text-white');
-                btn.classList.add('bg-stone-100', 'text-stone-700');
-            });
-            event.currentTarget.classList.remove('bg-stone-100', 'text-stone-700');
-            event.currentTarget.classList.add('bg-stone-900', 'text-white');
+            titleEl.textContent = categoryNames[category] || "Recetas";
+            badgeEl.textContent = category.toUpperCase();
 
             cards.forEach(card => {
                 if (category === 'todos' || card.dataset.category === category) {
                     card.style.display = 'flex';
+                    count++;
                 } else {
                     card.style.display = 'none';
                 }
             });
-            document.getElementById('noResults').classList.add('hidden');
+
+            document.getElementById('noResults').classList.toggle('hidden', count > 0);
             document.getElementById('searchInput').value = '';
         }
 
-        function resetFilters() {
-            const cards = document.querySelectorAll('.recipe-card');
-            const buttons = document.querySelectorAll('.category-btn');
-
-            buttons.forEach((btn, index) => {
-                if (index === 0) {
-                    btn.classList.remove('bg-stone-100', 'text-stone-700');
-                    btn.classList.add('bg-stone-900', 'text-white');
-                } else {
-                    btn.classList.remove('bg-stone-900', 'text-white');
-                    btn.classList.add('bg-stone-100', 'text-stone-700');
-                }
-            });
-
-            cards.forEach(card => card.style.display = 'flex');
-            document.getElementById('noResults').classList.add('hidden');
-            document.getElementById('searchInput').value = '';
+        function resetView() {
+            filterCategory('todos');
         }
 
-        // Búsqueda en tiempo real
+        // Búsqueda en tiempo real funcional
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase().trim();
             const cards = document.querySelectorAll('.recipe-card');
-            let visibleCount = 0;
+            let visible = 0;
 
             cards.forEach(card => {
                 const title = card.dataset.title;
                 const text = card.textContent.toLowerCase();
                 if (title.includes(term) || text.includes(term)) {
                     card.style.display = 'flex';
-                    visibleCount++;
+                    visible++;
                 } else {
                     card.style.display = 'none';
                 }
             });
 
-            const noResults = document.getElementById('noResults');
-            if (visibleCount === 0) {
-                noResults.classList.remove('hidden');
-            } else {
-                noResults.classList.add('hidden');
+            document.getElementById('sectionTitle').textContent = term ? `Resultados para: "${term}"` : "Nuestras Recetas";
+            document.getElementById('noResults').classList.toggle('hidden', visible > 0);
+        });
+
+        // Cerrar modal con Escape
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeRecipeModal();
+                document.getElementById('sideMenu').classList.add('hidden');
             }
+        });
+        document.getElementById('recipeModal').addEventListener('click', (e) => {
+            if (e.target.id === 'recipeModal') closeRecipeModal();
+        });
+        document.getElementById('sideMenu').addEventListener('click', (e) => {
+            if (e.target.id === 'sideMenu') toggleMenu();
         });
     </script>
 </body>
