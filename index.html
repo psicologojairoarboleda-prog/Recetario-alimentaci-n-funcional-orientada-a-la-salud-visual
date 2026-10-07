@@ -17,7 +17,8 @@
         .menu-btn { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 6px; }
         .menu-btn span { display: block; width: 24px; height: 3px; background-color: #2C2C2C; border-radius: 2px; }
         .site-title { font-size: 24px; font-weight: 700; color: #1A1A1A; cursor: pointer; }
-        .user-avatar { width: 38px; height: 38px; background: #F0F0EE; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .user-avatar { width: 42px; height: 42px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid #D1D1CB; }
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
 
         /* Buscador */
         .search-bar-container { background: #F4F4F0; border-top: 1px solid #E5E5E0; padding: 12px 20px; }
@@ -95,7 +96,10 @@
                 </button>
                 <h1 class="site-title" onclick="resetView()">Recetas funcionales</h1>
             </div>
-            <div class="user-avatar">👤</div>
+            <!-- Logotipo del usuario en formato JPEG -->
+            <div class="user-avatar" title="Psicólogo Jairo Arboleda">
+                <img src="LOGO.jpeg" alt="Logo Jairo Arboleda">
+            </div>
         </div>
         <div class="search-bar-container">
             <div class="search-inner">
@@ -149,7 +153,7 @@
                     <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Pescado">
                     <div class="carousel-body">
                         <span class="badge badge-almuerzos">Almuerzos y cenas</span>
-                        <h3 class="carousel-title">Pescado a la plancha con lentejas y aguacate</h3>
+                        <h3 class="carousel-title">Pescado a la plancha con lentejas, tomate y aguacate</h3>
                         <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 25 min • 1 porción</p>
                     </div>
                 </div>
@@ -157,16 +161,16 @@
                     <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Postre">
                     <div class="carousel-body">
                         <span class="badge badge-postres">Postres</span>
-                        <h3 class="carousel-title">Pudín de chía y puré de mango</h3>
-                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 15 min + reposo • 1 porción</p>
+                        <h3 class="carousel-title">Parfait de guayaba, yogur natural, chía y nueces</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 10 min + frío • 1 porción</p>
                     </div>
                 </div>
-                <div class="carousel-card" onclick="openModal('smoothie_verde')">
+                <div class="carousel-card" onclick="openModal('batido_guayaba')">
                     <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" class="carousel-img" alt="Bebida">
                     <div class="carousel-body">
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="carousel-title">Smoothie verde protector</h3>
-                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 5 min • 1 porción</p>
+                        <h3 class="carousel-title">Batido de guayaba, espinaca, yogur y chía</h3>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 5 min • 350 ml</p>
                     </div>
                 </div>
             </div>
@@ -178,7 +182,7 @@
         </div>
 
         <div class="grid-recipes" id="recipesGrid">
-            <!-- Receta 1 -->
+            <!-- DESAYUNOS (4 recetas) -->
             <article class="recipe-card" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
                 <div class="recipe-img-container" onclick="openModal('arepa_huevo')">
                     <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa">
@@ -187,7 +191,7 @@
                     <div>
                         <span class="badge badge-desayunos">Desayunos</span>
                         <h3 class="recipe-title serif" onclick="openModal('arepa_huevo')">Arepa integral con huevo, aguacate y espinaca</h3>
-                        <p style="font-size: 13px; color: #666;">Combinación nutritiva de maíz integral, hoja verde y grasas saludables para iniciar el día.</p>
+                        <p style="font-size: 13px; color: #666;">Maíz integral, hoja verde, huevo y aguacate.</p>
                     </div>
                     <div class="recipe-meta">
                         <span>⏱️ 15 min</span>
@@ -196,7 +200,58 @@
                 </div>
             </article>
 
-            <!-- Receta 2 -->
+            <article class="recipe-card" data-category="desayunos" data-title="avena salada con espinaca huevo aguacate y chia">
+                <div class="recipe-img-container" onclick="openModal('avena_salada')">
+                    <img src="https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Avena">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('avena_salada')">Avena salada con espinaca, huevo, aguacate y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Fibra y grasas insaturadas en un bowl reconfortante.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 15 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="desayunos" data-title="arepa con frijol huevo aguacate y tomate">
+                <div class="recipe-img-container" onclick="openModal('arepa_frijol')">
+                    <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa frijol">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_frijol')">Arepa con fríjol, huevo, aguacate y tomate</h3>
+                        <p style="font-size: 13px; color: #666;">Leguminosa, maíz, aguacate y vegetal fresco.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 15 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="desayunos" data-title="arepa rellena de huevo espinaca y champiñones">
+                <div class="recipe-img-container" onclick="openModal('arepa_rellena')">
+                    <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Arepa rellena">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_rellena')">Arepa rellena de huevo, espinaca y champiñones</h3>
+                        <p style="font-size: 13px; color: #666;">Preparación vegetalmente diversa y nutritiva.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 15 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- ALMUERZOS Y CENAS (6 recetas) -->
             <article class="recipe-card" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
                 <div class="recipe-img-container" onclick="openModal('pescado_lentejas')">
                     <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pescado">
@@ -205,7 +260,7 @@
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos y cenas</span>
                         <h3 class="recipe-title serif" onclick="openModal('pescado_lentejas')">Pescado a la plancha con lentejas, tomate y aguacate</h3>
-                        <p style="font-size: 13px; color: #666;">Aporte clave de omega-3 y fibra vegetal en un plato equilibrado.</p>
+                        <p style="font-size: 13px; color: #666;">Aporte clave de omega-3 y fibra vegetal.</p>
                     </div>
                     <div class="recipe-meta">
                         <span>⏱️ 25 min</span>
@@ -214,38 +269,208 @@
                 </div>
             </article>
 
-            <!-- Receta 3 -->
-            <article class="recipe-card" data-category="postres" data-title="pudín de chía y puré de mango">
-                <div class="recipe-img-container" onclick="openModal('pudin_chia')">
-                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Postre">
+            <article class="recipe-card" data-category="almuerzos" data-title="bowl de sardinas arroz integral brocoli zanahoria y aguacate">
+                <div class="recipe-img-container" onclick="openModal('bowl_sardinas')">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bowl sardinas">
                 </div>
                 <div class="recipe-content">
                     <div>
-                        <span class="badge badge-postres">Postres</span>
-                        <h3 class="recipe-title serif" onclick="openModal('pudin_chia')">Pudín de chía y puré de mango</h3>
-                        <p style="font-size: 13px; color: #666;">Opción dulce sin azúcares añadidos, rica en betacarotenos y textura cremosa.</p>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('bowl_sardinas')">Bowl de sardinas, arroz integral, brócoli, zanahoria y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Pescado, cereal integral, verduras y aguacate.</p>
                     </div>
                     <div class="recipe-meta">
-                        <span>⏱️ 15 min + reposo</span>
+                        <span>⏱️ 25 min</span>
                         <span style="color: #1E5128; font-weight: 600;">1 porción</span>
                     </div>
                 </div>
             </article>
 
-            <!-- Receta 4 -->
-            <article class="recipe-card" data-category="bebidas" data-title="smoothie verde protector">
-                <div class="recipe-img-container" onclick="openModal('smoothie_verde')">
-                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bebida">
+            <article class="recipe-card" data-category="almuerzos" data-title="trucha con garbanzos espinaca tomate y aguacate">
+                <div class="recipe-img-container" onclick="openModal('trucha_garbanzos')">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Trucha">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('trucha_garbanzos')">Trucha con garbanzos, espinaca, tomate y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Combinación ideal de omega-3, leguminosa y hoja verde.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 25 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="pimenton relleno de salmon y lentejas">
+                <div class="recipe-img-container" onclick="openModal('pimenton_relleno')">
+                    <img src="https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Pimenton relleno">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pimenton_relleno')">Pimentón relleno de salmón y lentejas</h3>
+                        <p style="font-size: 13px; color: #666;">Pescado, leguminosa y vegetales al horno.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 35 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="tortilla de espinaca y champiñones con ensalada de aguacate">
+                <div class="recipe-img-container" onclick="openModal('tortilla_espinaca')">
+                    <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Tortilla">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('tortilla_espinaca')">Tortilla de espinaca y champiñones con ensalada de aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Vegetales, huevo y aguacate (sin pescado).</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 20 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="almuerzos" data-title="guiso de lentejas garbanzos y verduras con arepa integral">
+                <div class="recipe-img-container" onclick="openModal('guiso_lentejas')">
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Guiso">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-almuerzos">Almuerzos y cenas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('guiso_lentejas')">Guiso de lentejas, garbanzos y verduras con arepa integral</h3>
+                        <p style="font-size: 13px; color: #666;">Leguminosas, verduras y cereal integral.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 30 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- POSTRES (3 recetas) -->
+            <article class="recipe-card" data-category="postres" data-title="parfait de guayaba yogur natural chia y nueces">
+                <div class="recipe-img-container" onclick="openModal('pudin_chia')">
+                    <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Parfait">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('pudin_chia')">Parfait de guayaba, yogur natural, chía y nueces</h3>
+                        <p style="font-size: 13px; color: #666;">Fruta, semilla y nuez con bajo aporte de azúcar añadido.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 10 min + frío</span>
+                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="postres" data-title="mousse de aguacate y cacao">
+                <div class="recipe-img-container" onclick="openModal('mousse_aguacate')">
+                    <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Mousse">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('mousse_aguacate')">Mousse de aguacate y cacao</h3>
+                        <p style="font-size: 13px; color: #666;">Aguacate, cacao y nuez como alternativa densa y nutritiva.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 10 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">2 porciones</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="postres" data-title="bocaditos de zanahoria avena y nueces">
+                <div class="recipe-img-container" onclick="openModal('bocaditos_zanahoria')">
+                    <img src="https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bocaditos">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-postres">Postres</span>
+                        <h3 class="recipe-title serif" onclick="openModal('bocaditos_zanahoria')">Bocaditos de zanahoria, avena y nueces</h3>
+                        <p style="font-size: 13px; color: #666;">Zanahoria, avena y nueces orientadas a fibra.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 20 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">8 unidades</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BEBIDAS (4 recetas) -->
+            <article class="recipe-card" data-category="bebidas" data-title="batido de guayaba espinaca yogur y chia">
+                <div class="recipe-img-container" onclick="openModal('batido_guayaba')">
+                    <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Batido guayaba">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('smoothie_verde')">Smoothie verde protector</h3>
-                        <p style="font-size: 13px; color: #666;">Bebida hidratante con hojas verdes y un toque cítrico para nutrir tu día.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('batido_guayaba')">Batido de guayaba, espinaca, yogur y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Fruta, hoja verde y semilla hidratante.</p>
                     </div>
                     <div class="recipe-meta">
                         <span>⏱️ 5 min</span>
-                        <span style="color: #1E5128; font-weight: 600;">1 porción</span>
+                        <span style="color: #1E5128; font-weight: 600;">350 ml</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="bebidas" data-title="batido de zanahoria citrico y jengibre">
+                <div class="recipe-img-container" onclick="openModal('batido_zanahoria')">
+                    <img src="https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Batido zanahoria">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('batido_zanahoria')">Batido de zanahoria, cítrico y jengibre</h3>
+                        <p style="font-size: 13px; color: #666;">Vegetal anaranjado y fruta cítrica con un toque fresco.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 5 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">300 ml</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="bebidas" data-title="bebida cremosa de aguacate cacao y chia">
+                <div class="recipe-img-container" onclick="openModal('bebida_aguacate')">
+                    <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Bebida aguacate">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('bebida_aguacate')">Bebida cremosa de aguacate, cacao y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Aguacate, cacao y semilla sin azúcares añadidos.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 5 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">300 ml</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="bebidas" data-title="agua fresca de pepino limon espinaca y hierbabuena">
+                <div class="recipe-img-container" onclick="openModal('agua_fresca')">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" class="recipe-img" alt="Agua fresca">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-bebidas">Bebidas</span>
+                        <h3 class="recipe-title serif" onclick="openModal('agua_fresca')">Agua fresca de pepino, limón, espinaca y hierbabuena</h3>
+                        <p style="font-size: 13px; color: #666;">Hidratación ligera con vegetales y hierbas frescas.</p>
+                    </div>
+                    <div class="recipe-meta">
+                        <span>⏱️ 5 min</span>
+                        <span style="color: #1E5128; font-weight: 600;">350 ml</span>
                     </div>
                 </div>
             </article>
@@ -265,13 +490,14 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer con Copyright solicitado -->
     <footer>
         <p style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Recetas Funcionales • Inspirado en Good Food</p>
         <p>Alimentación consciente y cocina cotidiana orientada al bienestar visual.</p>
+        <p style="margin-top: 12px; color: #999; font-size: 12px;">©Psicologo Jairo Arboleda 2026</p>
     </footer>
 
-    <!-- Script de Interactividad -->
+    <!-- Script de Interactividad con las 17 recetas -->
     <script>
         const recipesData = {
             arepa_huevo: {
@@ -280,22 +506,39 @@
                 time: "15 min",
                 servings: "1 porción",
                 image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80",
-                ingredients: [
-                    "60 g de arepa integral de maíz (1 unidad)",
-                    "1 huevo fresco (50 g)",
-                    "50 g de aguacate hass",
-                    "40 g de espinaca fresca",
-                    "50 g de tomate maduro en cubos",
-                    "5 ml de aceite de oliva virgen extra",
-                    "Pimienta negra y hierbas al gusto"
-                ],
-                steps: [
-                    "Calentar la arepa en plancha o sartén a fuego medio hasta que quede dorada.",
-                    "Saltear la espinaca y el tomate con el aceite de oliva durante 2-3 minutos.",
-                    "Cocinar el huevo al punto deseado.",
-                    "Servir la arepa con el aguacate, la espinaca, el tomate y el huevo coronando el plato."
-                ],
-                plating: "Disponer la arepa como base, cubrir con los vegetales salteados y el huevo en la parte superior. Acompañar con los abanicos de aguacate al lado."
+                ingredients: ["60 g de arepa integral de maíz", "1 huevo fresco (50 g)", "50 g de aguacate hass", "40 g de espinaca fresca", "50 g de tomate", "5 ml de aceite de oliva", "Pimienta y hierbas al gusto"],
+                steps: ["Calienta la arepa en plancha hasta que esté dorada.", "Saltea la espinaca y el tomate con el aceite durante 2-3 minutos.", "Cocina el huevo a tu punto preferido.", "Sirve la arepa con aguacate, espinaca, tomate y huevo."],
+                plating: "Disponer la arepa como base y coronar con los vegetales y el huevo."
+            },
+            avena_salada: {
+                title: "Avena salada con espinaca, huevo, aguacate y chía",
+                category: "Desayunos",
+                time: "15 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["40 g de avena en hojuelas", "180 ml de agua o leche sin azúcar", "50 g de espinaca", "1 huevo cocido", "50 g de aguacate", "10 g de chía", "1/2 diente de ajo"],
+                steps: ["Cocina la avena con el líquido hasta obtener textura cremosa.", "Añade espinaca y ajo los últimos 2 minutos.", "Sirve en bowl con el huevo en mitades y aguacate.", "Termina con chía y pimienta."],
+                plating: "Presentar en bol hondo resaltando el contraste de los ingredientes verdes y el huevo."
+            },
+            arepa_frijol: {
+                title: "Arepa con fríjol, huevo, aguacate y tomate",
+                category: "Desayunos",
+                time: "15 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["60 g de arepa de maíz", "80 g de fríjol cocido", "1 huevo", "50 g de aguacate", "50 g de tomate", "5 g de cilantro", "5 ml de aceite de oliva"],
+                steps: ["Calienta la arepa y el fríjol por separado.", "Prepara el huevo con mínimo aceite.", "Aplasta ligeramente el fríjol sobre la arepa.", "Agrega huevo, aguacate, tomate y cilantro."],
+                plating: "Servir con el fríjol integrado a la arepa y el huevo encima."
+            },
+            arepa_rellena: {
+                title: "Arepa rellena de huevo, espinaca y champiñones",
+                category: "Desayunos",
+                time: "15 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["60 g de arepa integral", "2 huevos", "40 g de espinaca", "60 g de champiñones", "40 g de aguacate", "5 ml de aceite de oliva", "Pimienta al gusto"],
+                steps: ["Saltea champiñones y espinaca con el aceite.", "Bate los huevos, incorpóralos y cocina hasta cuajar.", "Abre la arepa caliente y rellena.", "Añade aguacate en láminas y sirve."],
+                plating: "Abrir la arepa estilo bolsillo dejando ver el relleno colorido en su interior."
             },
             pescado_lentejas: {
                 title: "Pescado a la plancha con lentejas, tomate y aguacate",
@@ -303,61 +546,129 @@
                 time: "25 min",
                 servings: "1 porción",
                 image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=900&q=80",
-                ingredients: [
-                    "150 g de filete de pescado fresco",
-                    "120 g de lentejas cocidas",
-                    "60 g de aguacate en cubos",
-                    "80 g de tomate picado",
-                    "50 g de zanahoria rallada",
-                    "10 ml de aceite de oliva y jugo de 1/2 limón"
-                ],
-                steps: [
-                    "Sazonar el pescado con limón, sal y hierbas.",
-                    "Cocinar a la plancha hasta que esté dorado y jugoso.",
-                    "Mezclar las lentejas con el tomate, la zanahoria y el aguacate.",
-                    "Aliñar con aceite de oliva y servir junto al pescado."
-                ],
-                plating: "Colocar la menestra de lentejas colorida al centro del plato y apoyar el filete de pescado encima. Decorar con hierbas frescas."
+                ingredients: ["150 g de filete de pescado", "120 g de lentejas cocidas", "60 g de aguacate", "80 g de tomate", "50 g de zanahoria", "10 ml de aceite de oliva", "1/2 limón", "Hierbas"],
+                steps: ["Sazona el pescado con limón y hierbas.", "Cocina a la plancha hasta dorar.", "Mezcla lentejas con tomate, zanahoria y aguacate.", "Aliña con aceite y sirve junto al pescado."],
+                plating: "Colocar la menestra de lentejas al centro y apoyar el filete encima."
+            },
+            bowl_sardinas: {
+                title: "Bowl de sardinas, arroz integral, brócoli, zanahoria y aguacate",
+                category: "Almuerzos y cenas",
+                time: "25 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["100-120 g de sardinas", "120 g de arroz integral cocido", "100 g de brócoli", "70 g de zanahoria", "60 g de aguacate", "5 ml de aceite de oliva", "1/2 limón"],
+                steps: ["Calienta el arroz integral.", "Cocina brócoli y zanahoria al vapor.", "Dispón el arroz en bowl y agrega sardinas, verduras y aguacate.", "Termina con limón y aceite de oliva."],
+                plating: "Organizar en secciones ordenadas dentro del bowl para resaltar los colores."
+            },
+            trucha_garbanzos: {
+                title: "Trucha con garbanzos, espinaca, tomate y aguacate",
+                category: "Almuerzos y cenas",
+                time: "25 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["150 g de trucha", "100 g de garbanzos cocidos", "60 g de espinaca", "80 g de tomate", "60 g de aguacate", "10 ml de aceite de oliva", "1/2 limón"],
+                steps: ["Sazona y cocina la trucha a la plancha.", "Saltea la espinaca brevemente.", "Mezcla garbanzos, tomate y aguacate.", "Sirve la trucha sobre la mezcla con limón y aceite."],
+                plating: "Base de garbanzos y vegetales con la trucha dorada reposando encima."
+            },
+            pimenton_relleno: {
+                title: "Pimentón relleno de salmón y lentejas",
+                category: "Almuerzos y cenas",
+                time: "35 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["1 pimentón rojo grande (180 g)", "120 g de salmón", "100 g de lentejas cocidas", "30 g de cebolla", "50 g de tomate", "5 g de perejil", "5 ml de aceite de oliva"],
+                steps: ["Parte el pimentón y retira semillas.", "Saltea cebolla y tomate; incorpora lentejas y salmón desmenuzado.", "Rellena el pimentón y hornea a 180°C por 20-25 min.", "Termina con perejil."],
+                plating: "Servir las Mitades de pimentón bien horneadas y espolvoreadas con perejil."
+            },
+            tortilla_espinaca: {
+                title: "Tortilla de espinaca y champiñones con ensalada de aguacate",
+                category: "Almuerzos y cenas",
+                time: "20 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["2 huevos", "60 g de espinaca", "80 g de champiñones", "80 g de tomate", "60 g de aguacate", "5 ml de aceite de oliva", "1/2 limón"],
+                steps: ["Saltea champiñones y espinaca.", "Agrega huevos batidos y cocina la tortilla.", "Mezcla tomate y aguacate con limón.", "Sirve la tortilla con la ensalada al lado."],
+                plating: "Doblar la tortilla por la mitad junto a la ensalada colorida de aguacate."
+            },
+            guiso_lentejas: {
+                title: "Guiso de lentejas, garbanzos y verduras con arepa integral",
+                category: "Almuerzos y cenas",
+                time: "30 min",
+                servings: "1 porción",
+                image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["80 g de lentejas cocidas", "80 g de garbanzos cocidos", "50 g de espinaca", "60 g de zanahoria", "80 g de tomate", "60 g de arepa integral", "5 ml de aceite de oliva"],
+                steps: ["Sofríe tomate y zanahoria con aceite.", "Agrega lentejas, garbanzos y un poco de agua; cocina 10 min.", "Incorpora espinaca al final.", "Sirve con arepa integral caliente."],
+                plating: "Servir el guiso espeso en plato hondo acompañado de la arepa tostada."
             },
             pudin_chia: {
-                title: "Pudín de chía y puré de mango",
+                title: "Parfait de guayaba, yogur natural, chía y nueces",
                 category: "Postres",
-                time: "15 min + reposo",
+                time: "10 min + frío",
                 servings: "1 porción",
                 image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=80",
-                ingredients: [
-                    "3 cucharadas soperas de semillas de chía",
-                    "3/4 de taza de leche vegetal",
-                    "1/2 mango maduro triturado",
-                    "Unas gotas de extracto de vainilla"
-                ],
-                steps: [
-                    "Mezclar la chía, la leche vegetal y la vainilla en un vaso.",
-                    "Remover constantemente los primeros minutos para evitar grumos.",
-                    "Refrigerar por al menos 2 horas hasta espesar.",
-                    "Cubrir con el puré de mango fresco al momento de servir."
-                ],
-                plating: "Servir en vaso de cristal transparente para destacar el contraste entre el blanco de la chía y el naranja brillante del mango."
+                ingredients: ["100 g de guayaba", "150 g de yogur natural sin azúcar", "10 g de chía", "15 g de nueces", "1 g de canela"],
+                steps: ["Tritura o corta la guayaba.", "Mezcla el yogur con chía y deja reposar 10 min.", "Alterna capas de yogur y guayaba en un vaso.", "Termina con nueces y canela; refrigera 30 min."],
+                plating: "Vaso transparente mostrando las capas alternas de yogur y guayaba."
             },
-            smoothie_verde: {
-                title: "Smoothie verde protector",
+            mousse_aguacate: {
+                title: "Mousse de aguacate y cacao",
+                category: "Postres",
+                time: "10 min",
+                servings: "2 porciones",
+                image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["150 g de aguacate maduro", "15 g de cacao sin azúcar", "80 g de yogur natural", "1 g de canela", "2 ml de vainilla", "10 g de nueces picadas"],
+                steps: ["Procesa aguacate, cacao, yogur, canela y vainilla hasta obtener crema lisa.", "Refrigera 30 minutos.", "Sirve con nueces por encima."],
+                plating: "Servir en bol individual con textura cremosa y nueces decorativas."
+            },
+            bocaditos_zanahoria: {
+                title: "Bocaditos de zanahoria, avena y nueces",
+                category: "Postres",
+                time: "20 min",
+                servings: "8 unidades",
+                image: "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["100 g de zanahoria rallada", "80 g de avena", "30 g de nueces", "20 g de coco rallado", "2 g de canela", "30 g de yogur natural"],
+                steps: ["Tritura parcialmente avena y nueces.", "Mezcla con zanahoria, coco, canela y yogur hasta formar masa moldeable.", "Forma 8 bolitas.", "Refrigera 30-60 minutos antes de servir."],
+                plating: "Presentar en plato plano espolvoreadas con un toque de coco."
+            },
+            batido_guayaba: {
+                title: "Batido de guayaba, espinaca, yogur y chía",
                 category: "Bebidas",
                 time: "5 min",
-                servings: "1 porción",
+                servings: "350 ml",
                 image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=900&q=80",
-                ingredients: [
-                    "1 taza de hojas de espinaca fresca",
-                    "1 manzana verde en trozos",
-                    "Jugo de medio limón",
-                    "1 vaso de agua fría o agua de coco"
-                ],
-                steps: [
-                    "Lavar muy bien la espinaca y trocear la manzana.",
-                    "Agregar los ingredientes a la licuadora comenzando por los líquidos.",
-                    "Procesar a velocidad alta hasta obtener una textura completamente homogénea.",
-                    "Servir bien frío."
-                ],
-                plating: "Servir en un vaso alto con una rodaja fina de limón en el borde."
+                ingredients: ["120 g de guayaba", "30 g de espinaca", "100 g de yogur natural", "150 ml de agua", "10 g de chía", "50 g de hielo"],
+                steps: ["Lava y trocea la guayaba.", "Licúa guayaba, espinaca, yogur y agua.", "Añade chía e hielo y licúa brevemente.", "Sirve de inmediato sin azúcar."],
+                plating: "Vaso alto decorado con una hoja fresca de espinaca."
+            },
+            batido_zanahoria: {
+                title: "Batido de zanahoria, cítrico y jengibre",
+                category: "Bebidas",
+                time: "5 min",
+                servings: "300 ml",
+                image: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["100 g de zanahoria", "120 g de naranja", "120 ml de agua", "5 g de jengibre fresco", "50 g de hielo"],
+                steps: ["Pela y trocea zanahoria y naranja.", "Licúa con agua y jengibre.", "Agrega hielo y procesa hasta integrar.", "Sirve inmediatamente."],
+                plating: "Servir en vaso frío con un toque de jengibre rallado encima."
+            },
+            bebida_aguacate: {
+                title: "Bebida cremosa de aguacate, cacao y chía",
+                category: "Bebidas",
+                time: "5 min",
+                servings: "300 ml",
+                image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["70 g de aguacate", "200 ml de leche sin azúcar", "10 g de cacao sin azúcar", "8 g de chía", "1 g de canela", "50 g de hielo"],
+                steps: ["Coloca todos los ingredientes en la licuadora.", "Procesa hasta lograr textura cremosa.", "Sirve fría."],
+                plating: "Servir en vaso ancho con semillas de chía espolvoreadas en la superficie."
+            },
+            agua_fresca: {
+                title: "Agua fresca de pepino, limón, espinaca y hierbabuena",
+                category: "Bebidas",
+                time: "5 min",
+                servings: "350 ml",
+                image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=900&q=80",
+                ingredients: ["100 g de pepino", "250 ml de agua", "20 ml de limón", "20 g de espinaca", "5 g de hierbabuena", "50 g de hielo"],
+                steps: ["Lava pepino, espinaca y hierbabuena.", "Licúa brevemente con el agua.", "Añade limón e hielo.", "Sirve sin azúcar."],
+                plating: "Vaso transparente con rodajas de pepino y hojas de hierbabuena."
             }
         };
 
