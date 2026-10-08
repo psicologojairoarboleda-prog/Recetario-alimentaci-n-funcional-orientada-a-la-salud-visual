@@ -76,7 +76,6 @@
         .modal-box li { margin-bottom: 8px; }
         .box-section { background: #F9F9F6; padding: 24px; border-radius: 16px; border: 1px solid #E5E5E0; }
 
-        /* Footer más claro */
         footer { background: #333333; color: #E0E0E0; text-align: center; padding: 40px 20px; margin-top: 60px; font-size: 13px; }
         footer p { margin-bottom: 8px; }
         footer a { color: #A3E4D7; text-decoration: none; font-weight: 600; }
@@ -136,15 +135,15 @@
                 </div>
             </div>
             <div class="carousel" id="carouselContainer">
-                <div class="carousel-card" onclick="openModal('arepa_frijol')">
-                    <img src="recetario-imagenes/desayunos/01-arepa-frijol-huevo.png" class="carousel-img" alt="Arepa">
+                <div class="carousel-card" onclick="openModal('arepa_huevo_aguacate_espinaca')">
+                    <img src="recetario-imagenes/desayunos/03-arepa-integral-huevo.png" class="carousel-img" alt="Arepa">
                     <div class="carousel-body">
                         <span class="badge badge-desayunos">Desayunos</span>
-                        <h3 class="carousel-title">Arepa con fríjol, huevo, aguacate y tomate</h3>
+                        <h3 class="carousel-title">Arepa integral con huevo, aguacate y espinaca</h3>
                         <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 15 min • 1 porción</p>
                     </div>
                 </div>
-                <div class="carousel-card" onclick="openModal('pescado_lentejas')">
+                <div class="carousel-card" onclick="openModal('pescado_lentejas_tomate_aguacate')">
                     <img src="recetario-imagenes/almuerzos-cenas/01-pescado-lentejas.png" class="carousel-img" alt="Pescado">
                     <div class="carousel-body">
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
@@ -152,7 +151,7 @@
                         <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 25 min • 1 porción</p>
                     </div>
                 </div>
-                <div class="carousel-card" onclick="openModal('pudin_chia')">
+                <div class="carousel-card" onclick="openModal('parfait_guayaba_yogur_natural_chia_nueces')">
                     <img src="recetario-imagenes/postres/01-parfait-guayaba.png" class="carousel-img" alt="Postre">
                     <div class="carousel-body">
                         <span class="badge badge-postres">Postres</span>
@@ -160,12 +159,12 @@
                         <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 10 min • 1 porción</p>
                     </div>
                 </div>
-                <div class="carousel-card" onclick="openModal('batido_guayaba')">
+                <div class="carousel-card" onclick="openModal('batido_guayaba_espinaca_yogur_chia')">
                     <img src="recetario-imagenes/bebidas/01-batido-guayaba.png" class="carousel-img" alt="Bebida">
                     <div class="carousel-body">
                         <span class="badge badge-bebidas">Bebidas</span>
                         <h3 class="carousel-title">Batido de guayaba, espinaca, yogur y chía</h3>
-                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 5 min • 1 vaso</p>
+                        <p style="font-size: 11px; color: #777; margin-top: 6px;">⏱️ 5 min • 1 porción</p>
                     </div>
                 </div>
             </div>
@@ -178,57 +177,57 @@
         <div class="grid-recipes" id="recipesGrid">
             
             <!-- DESAYUNOS (4 recetas) -->
-            <article class="recipe-card" data-category="desayunos" data-title="arepa con frijol huevo aguacate y tomate">
-                <div class="recipe-img-container" onclick="openModal('arepa_frijol')">
-                    <img src="recetario-imagenes/desayunos/01-arepa-frijol-huevo.png" class="recipe-img" alt="Arepa con fríjol">
-                </div>
-                <div class="recipe-content">
-                    <div>
-                        <span class="badge badge-desayunos">Desayunos</span>
-                        <h3 class="recipe-title serif" onclick="openModal('arepa_frijol')">Arepa con fríjol, huevo, aguacate y tomate</h3>
-                        <p style="font-size: 13px; color: #666;">Combinación de leguminosas, maíz, aguacate y vegetal fresco.</p>
-                    </div>
-                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
-                </div>
-            </article>
-
-            <article class="recipe-card" data-category="desayunos" data-title="arepa rellena de huevo espinaca y champiñones">
-                <div class="recipe-img-container" onclick="openModal('arepa_rellena')">
-                    <img src="recetario-imagenes/desayunos/02-arepa-rellena-espinaca.png" class="recipe-img" alt="Arepa rellena">
-                </div>
-                <div class="recipe-content">
-                    <div>
-                        <span class="badge badge-desayunos">Desayunos</span>
-                        <h3 class="recipe-title serif" onclick="openModal('arepa_rellena')">Arepa rellena de huevo, espinaca y champiñones</h3>
-                        <p style="font-size: 13px; color: #666;">Preparación vegetalmente diversa y nutritiva para iniciar el día.</p>
-                    </div>
-                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
-                </div>
-            </article>
-
             <article class="recipe-card" data-category="desayunos" data-title="arepa integral con huevo aguacate y espinaca">
-                <div class="recipe-img-container" onclick="openModal('arepa_huevo')">
+                <div class="recipe-img-container" onclick="openModal('arepa_huevo_aguacate_espinaca')">
                     <img src="recetario-imagenes/desayunos/03-arepa-integral-huevo.png" class="recipe-img" alt="Arepa integral">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-desayunos">Desayunos</span>
-                        <h3 class="recipe-title serif" onclick="openModal('arepa_huevo')">Arepa integral con huevo, aguacate y espinaca</h3>
-                        <p style="font-size: 13px; color: #666;">Maíz integral, hoja verde, huevo y aguacate con luteína.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_huevo_aguacate_espinaca')">Arepa integral con huevo, aguacate y espinaca</h3>
+                        <p style="font-size: 13px; color: #666;">Arepa integral, huevo, aguacate, espinaca y tomate.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="desayunos" data-title="avena salada con espinaca huevo aguacate y chia">
-                <div class="recipe-img-container" onclick="openModal('avena_salada')">
+                <div class="recipe-img-container" onclick="openModal('avena_salada_espinaca_huevo_aguacate_chia')">
                     <img src="recetario-imagenes/desayunos/04-avena-salada.png" class="recipe-img" alt="Avena salada">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-desayunos">Desayunos</span>
-                        <h3 class="recipe-title serif" onclick="openModal('avena_salada')">Avena salada con espinaca, huevo, aguacate y chía</h3>
-                        <p style="font-size: 13px; color: #666;">Fibra y grasas insaturadas en un bowl reconfortante.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('avena_salada_espinaca_huevo_aguacate_chia')">Avena salada con espinaca, huevo, aguacate y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Avena en hojuelas, espinaca, huevo cocido y chía.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="desayunos" data-title="arepa con frijol huevo aguacate y tomate">
+                <div class="recipe-img-container" onclick="openModal('arepa_frijol_huevo_aguacate_tomate')">
+                    <img src="recetario-imagenes/desayunos/01-arepa-frijol-huevo.png" class="recipe-img" alt="Arepa con fríjol">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_frijol_huevo_aguacate_tomate')">Arepa con fríjol, huevo, aguacate y tomate</h3>
+                        <p style="font-size: 13px; color: #666;">Arepa de maíz, fríjol cocido, huevo y aguacate.</p>
+                    </div>
+                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                </div>
+            </article>
+
+            <article class="recipe-card" data-category="desayunos" data-title="arepa rellena de huevo espinaca y champiñones">
+                <div class="recipe-img-container" onclick="openModal('arepa_rellena_huevo_espinaca_champinones')">
+                    <img src="recetario-imagenes/desayunos/02-arepa-rellena-espinaca.png" class="recipe-img" alt="Arepa rellena">
+                </div>
+                <div class="recipe-content">
+                    <div>
+                        <span class="badge badge-desayunos">Desayunos</span>
+                        <h3 class="recipe-title serif" onclick="openModal('arepa_rellena_huevo_espinaca_champinones')">Arepa rellena de huevo, espinaca y champiñones</h3>
+                        <p style="font-size: 13px; color: #666;">Arepa integral, dos huevos, espinaca y champiñones.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
@@ -236,84 +235,84 @@
 
             <!-- ALMUERZOS O CENAS (6 recetas) -->
             <article class="recipe-card" data-category="almuerzos" data-title="pescado a la plancha con lentejas tomate y aguacate">
-                <div class="recipe-img-container" onclick="openModal('pescado_lentejas')">
+                <div class="recipe-img-container" onclick="openModal('pescado_lentejas_tomate_aguacate')">
                     <img src="recetario-imagenes/almuerzos-cenas/01-pescado-lentejas.png" class="recipe-img" alt="Pescado">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('pescado_lentejas')">Pescado a la plancha con lentejas, tomate y aguacate</h3>
-                        <p style="font-size: 13px; color: #666;">Omega-3 y legumbres protectoras de retina.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('pescado_lentejas_tomate_aguacate')">Pescado a la plancha con lentejas, tomate y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Pescado, lentejas cocidas, tomate y zanahoria.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="almuerzos" data-title="bowl de sardinas arroz integral brocoli zanahoria y aguacate">
-                <div class="recipe-img-container" onclick="openModal('bowl_sardinas')">
+                <div class="recipe-img-container" onclick="openModal('bowl_sardinas_arroz_integral_brocoli_zanahoria_aguacate')">
                     <img src="recetario-imagenes/almuerzos-cenas/02-bowl-sardinas.png" class="recipe-img" alt="Bowl sardinas">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('bowl_sardinas')">Bowl de sardinas, arroz integral, brócoli, zanahoria y aguacate</h3>
-                        <p style="font-size: 13px; color: #666;">Nutrición completa rica en omegas y betacarotenos.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('bowl_sardinas_arroz_integral_brocoli_zanahoria_aguacate')">Bowl de sardinas, arroz integral, brócoli, zanahoria y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Sardinas, arroz integral cocido, brócoli y zanahoria.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="almuerzos" data-title="trucha con garbanzos espinaca tomate y aguacate">
-                <div class="recipe-img-container" onclick="openModal('trucha_garbanzos')">
+                <div class="recipe-img-container" onclick="openModal('trucha_garbanzos_espinaca_tomate_aguacate')">
                     <img src="recetario-imagenes/almuerzos-cenas/03-trucha-garbanzos.png" class="recipe-img" alt="Trucha">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('trucha_garbanzos')">Trucha con garbanzos, espinaca, tomate y aguacate</h3>
-                        <p style="font-size: 13px; color: #666;">Pescado fresco de la región con legumbres y vegetales.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('trucha_garbanzos_espinaca_tomate_aguacate')">Trucha con garbanzos, espinaca, tomate y aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Trucha, garbanzos cocidos, espinaca y tomate.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 25 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="almuerzos" data-title="pimenton relleno de salmon y lentejas">
-                <div class="recipe-img-container" onclick="openModal('pimenton_relleno')">
+                <div class="recipe-img-container" onclick="openModal('pimenton_relleno_salmon_lentejas')">
                     <img src="recetario-imagenes/almuerzos-cenas/04-pimenton-relleno.png" class="recipe-img" alt="Pimentón relleno">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('pimenton_relleno')">Pimentón relleno de salmón y lentejas</h3>
-                        <p style="font-size: 13px; color: #666;">Antioxidantes del pimentón combinados con salmón y lentejas.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('pimenton_relleno_salmon_lentejas')">Pimentón relleno de salmón y lentejas</h3>
+                        <p style="font-size: 13px; color: #666;">Pimentón rojo grande, salmón y lentejas cocidas.</p>
                     </div>
-                    <div class="recipe-meta"><span>⏱️ 30 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                    <div class="recipe-meta"><span>⏱️ 35 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="almuerzos" data-title="tortilla de espinaca y champiñones con ensalada de aguacate">
-                <div class="recipe-img-container" onclick="openModal('tortilla_espinaca')">
+                <div class="recipe-img-container" onclick="openModal('tortilla_espinaca_champinones_ensalada_aguacate')">
                     <img src="recetario-imagenes/almuerzos-cenas/05-tortilla-espinaca.png" class="recipe-img" alt="Tortilla">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('tortilla_espinaca')">Tortilla de espinaca y champiñones con ensalada de aguacate</h3>
-                        <p style="font-size: 13px; color: #666;">Ligera, proteica y excelente para la cena.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('tortilla_espinaca_champinones_ensalada_aguacate')">Tortilla de espinaca y champiñones con ensalada de aguacate</h3>
+                        <p style="font-size: 13px; color: #666;">Huevos, espinaca, champiñones y tomate.</p>
                     </div>
-                    <div class="recipe-meta"><span>⏱️ 15 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                    <div class="recipe-meta"><span>⏱️ 20 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="almuerzos" data-title="guiso de lentejas garbanzos y verduras con arepa integral">
-                <div class="recipe-img-container" onclick="openModal('guiso_lentejas')">
+                <div class="recipe-img-container" onclick="openModal('guiso_lentejas_garbanzos_verduras_arepa_integral')">
                     <img src="recetario-imagenes/almuerzos-cenas/06-guiso-lentejas.png" class="recipe-img" alt="Guiso">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-almuerzos">Almuerzos o Cenas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('guiso_lentejas')">Guiso de lentejas, garbanzos y verduras con arepa integral</h3>
-                        <p style="font-size: 13px; color: #666;">Plato fuerte tradicional adaptado con doble leguminosa.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('guiso_lentejas_garbanzos_verduras_arepa_integral')">Guiso de lentejas, garbanzos y verduras con arepa integral</h3>
+                        <p style="font-size: 13px; color: #666;">Lentejas, garbanzos, espinaca, zanahoria y arepa integral.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 30 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
@@ -321,101 +320,101 @@
 
             <!-- POSTRES (3 recetas) -->
             <article class="recipe-card" data-category="postres" data-title="parfait de guayaba yogur natural chia y nueces">
-                <div class="recipe-img-container" onclick="openModal('pudin_chia')">
+                <div class="recipe-img-container" onclick="openModal('parfait_guayaba_yogur_natural_chia_nueces')">
                     <img src="recetario-imagenes/postres/01-parfait-guayaba.png" class="recipe-img" alt="Parfait">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-postres">Postres</span>
-                        <h3 class="recipe-title serif" onclick="openModal('pudin_chia')">Parfait de guayaba, yogur natural, chía y nueces</h3>
-                        <p style="font-size: 13px; color: #666;">Antioxidantes con textura cremosa y saludable.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('parfait_guayaba_yogur_natural_chia_nueces')">Parfait de guayaba, yogur natural, chía y nueces</h3>
+                        <p style="font-size: 13px; color: #666;">Guayaba, yogur natural sin azúcar, chía y nueces.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 10 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="postres" data-title="mousse de aguacate y cacao">
-                <div class="recipe-img-container" onclick="openModal('mousse_aguacate')">
+                <div class="recipe-img-container" onclick="openModal('mousse_aguacate_cacao')">
                     <img src="recetario-imagenes/postres/02-mousse-aguacate.png" class="recipe-img" alt="Mousse">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-postres">Postres</span>
-                        <h3 class="recipe-title serif" onclick="openModal('mousse_aguacate')">Mousse de aguacate y cacao</h3>
-                        <p style="font-size: 13px; color: #666;">Grasas saludables y cacao puro para un postre funcional.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('mousse_aguacate_cacao')">Mousse de aguacate y cacao</h3>
+                        <p style="font-size: 13px; color: #666;">Aguacate maduro, cacao sin azúcar y yogur natural.</p>
                     </div>
-                    <div class="recipe-meta"><span>⏱️ 10 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                    <div class="recipe-meta"><span>⏱️ 10 min</span><span style="color: #1E5128; font-weight: 600;">2 porciones</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="postres" data-title="bocaditos de zanahoria avena y nueces">
-                <div class="recipe-img-container" onclick="openModal('bocaditos_zanahoria')">
+                <div class="recipe-img-container" onclick="openModal('bocaditos_zanahoria_avena_nueces')">
                     <img src="recetario-imagenes/postres/03-bocaditos-zanahoria.png" class="recipe-img" alt="Bocaditos">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-postres">Postres</span>
-                        <h3 class="recipe-title serif" onclick="openModal('bocaditos_zanahoria')">Bocaditos de zanahoria, avena y nueces</h3>
-                        <p style="font-size: 13px; color: #666;">Snacks dulces naturales con betacarotenos y fibra.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('bocaditos_zanahoria_avena_nueces')">Bocaditos de zanahoria, avena y nueces</h3>
+                        <p style="font-size: 13px; color: #666;">Zanahoria rallada, avena, nueces y coco rallado.</p>
                     </div>
-                    <div class="recipe-meta"><span>⏱️ 20 min</span><span style="color: #1E5128; font-weight: 600;">1 porción</span></div>
+                    <div class="recipe-meta"><span>⏱️ 20 min</span><span style="color: #1E5128; font-weight: 600;">8 unidades</span></div>
                 </div>
             </article>
 
             <!-- BEBIDAS (4 recetas) -->
             <article class="recipe-card" data-category="bebidas" data-title="batido de guayaba espinaca yogur y chia">
-                <div class="recipe-img-container" onclick="openModal('batido_guayaba')">
+                <div class="recipe-img-container" onclick="openModal('batido_guayaba_espinaca_yogur_chia')">
                     <img src="recetario-imagenes/bebidas/01-batido-guayaba.png" class="recipe-img" alt="Batido guayaba">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('batido_guayaba')">Batido de guayaba, espinaca, yogur y chía</h3>
-                        <p style="font-size: 13px; color: #666;">Hidratación funcional repleta de vitamina C.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('batido_guayaba_espinaca_yogur_chia')">Batido de guayaba, espinaca, yogur y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Guayaba, espinaca, yogur natural y chía.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="bebidas" data-title="batido de zanahoria citrico y jengibre">
-                <div class="recipe-img-container" onclick="openModal('batido_zanahoria')">
+                <div class="recipe-img-container" onclick="openModal('batido_zanahoria_citrico_jengibre')">
                     <img src="recetario-imagenes/bebidas/02-batido- zanahoria-jengibre.png" class="recipe-img" alt="Batido zanahoria">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('batido_zanahoria')">Batido de zanahoria, cítrico y jengibre</h3>
-                        <p style="font-size: 13px; color: #666;">Vitamina A y antioxidantes para la agudeza visual.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('batido_zanahoria_citrico_jengibre')">Batido de zanahoria, cítrico y jengibre</h3>
+                        <p style="font-size: 13px; color: #666;">Zanahoria, naranja, agua y jengibre fresco.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="bebidas" data-title="bebida cremosa de aguacate cacao y chia">
-                <div class="recipe-img-container" onclick="openModal('bebida_cremosa')">
+                <div class="recipe-img-container" onclick="openModal('bebida_cremosa_aguacate_cacao_chia')">
                     <img src="recetario-imagenes/bebidas/03-bebida-cremosa-aguacate.png" class="recipe-img" alt="Bebida cremosa">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('bebida_cremosa')">Bebida cremosa de aguacate, cacao y chía</h3>
-                        <p style="font-size: 13px; color: #666;">Textura sedosa rica en grasas saludables y antioxidantes.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('bebida_cremosa_aguacate_cacao_chia')">Bebida cremosa de aguacate, cacao y chía</h3>
+                        <p style="font-size: 13px; color: #666;">Aguacate, leche sin azúcar, cacao y chía.</p>
                     </div>
                     <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
                 </div>
             </article>
 
             <article class="recipe-card" data-category="bebidas" data-title="agua fresca de pepino limon espinaca y hierbabuena">
-                <div class="recipe-img-container" onclick="openModal('agua_fresca')">
+                <div class="recipe-img-container" onclick="openModal('agua_fresca_pepino_limon_espinaca_hierbabuena')">
                     <img src="recetario-imagenes/bebidas/04-agua-fresca-pepino.png" class="recipe-img" alt="Agua fresca">
                 </div>
                 <div class="recipe-content">
                     <div>
                         <span class="badge badge-bebidas">Bebidas</span>
-                        <h3 class="recipe-title serif" onclick="openModal('agua_fresca')">Agua fresca de pepino, limón, espinaca y hierbabuena</h3>
-                        <p style="font-size: 13px; color: #666;">Refrescante, hidratante y depurativa para todo el día.</p>
+                        <h3 class="recipe-title serif" onclick="openModal('agua_fresca_pepino_limon_espinaca_hierbabuena')">Agua fresca de pepino, limón, espinaca y hierbabuena</h3>
+                        <p style="font-size: 13px; color: #666;">Pepino, agua, limón, espinaca y hierbabuena.</p>
                     </div>
-                    <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 jarra</span></div>
+                    <div class="recipe-meta"><span>⏱️ 5 min</span><span style="color: #1E5128; font-weight: 600;">1 vaso</span></div>
                 </div>
             </article>
 
@@ -426,7 +425,6 @@
         <div class="modal-box" id="modalContentContainer"></div>
     </div>
 
-    <!-- FOOTER ACTUALIZADO -->
     <footer>
         <p style="font-weight: 700; color: #FFFFFF; font-size: 15px;">© Jairo Arboleda Psicólogo y Chef funcional</p>
         <p style="color: #B2DFDB; font-weight: 600;">Alimentación Funcional Para La Salud Mental, Cognitiva y Física</p>
@@ -436,259 +434,404 @@
 
     <script>
         const recipesData = {
-            'arepa_frijol': {
-                title: "Arepa con fríjol, huevo, aguacate y tomate",
-                category: "Desayunos",
-                badgeClass: "badge-desayunos",
-                time: "15 min",
-                portions: "1 porción",
-                img: "recetario-imagenes/desayunos/01-arepa-frijol-huevo.png",
-                desc: "Combinación de leguminosas colombianas y licopeno con alta densidad nutricional y sostenimiento energético prolongado.",
-                ingredients: ["1 arepa integral", "1/2 taza de fríjoles cocidos", "1 huevo campesino fresco", "Tomate maduro en cubos", "1/4 de aguacate Hass"],
-                steps: [
-                    "<b>Paso 1: Calentar arepa y fríjoles.</b> Tuesta la arepa integral y calienta ligeramente los fríjoles.",
-                    "<b>Paso 2: Preparar huevo.</b> Cocina el huevo a la plancha manteniendo la yema tierna.",
-                    "<b>Paso 3: Montaje.</b> Coloca los fríjoles sobre la arepa, añade el huevo y decora con tomate y aguacate."
-                ]
-            },
-            'arepa_rellena': {
-                title: "Arepa rellena de huevo, espinaca y champiñones",
-                category: "Desayunos",
-                badgeClass: "badge-desayunos",
-                time: "15 min",
-                portions: "1 porción",
-                img: "recetario-imagenes/desayunos/02-arepa-rellena-espinaca.png",
-                desc: "Micronutrientes esenciales y bajo índice glucémico para salud ocular sostenida en una preparación compacta.",
-                ingredients: ["1 arepa integral", "1 huevo", "Champiñones laminados", "1 taza de espinaca fresca"],
-                steps: [
-                    "<b>Paso 1: Saltear vegetales.</b> Saltea los champiñones y la espinaca con un toque de aceite de oliva.",
-                    "<b>Paso 2: Rellenar.</b> Abre la arepa e introduce los vegetales junto con el huevo cocido.",
-                    "<b>Paso 3: Servir.</b> Disfruta caliente."
-                ]
-            },
-            'arepa_huevo': {
+            'arepa_huevo_aguacate_espinaca': {
                 title: "Arepa integral con huevo, aguacate y espinaca",
                 category: "Desayunos",
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/desayunos/03-arepa-integral-huevo.png",
-                desc: "Una combinación equilibrada perfecta para iniciar el día protegiendo la mácula gracias al aporte de luteína, zeaxantina y grasas monoinsaturadas.",
-                ingredients: ["1 arepa de maíz integral", "1 huevo campesino fresco", "1/4 de aguacate Hass en láminas", "1 taza de hojas de espinaca fresca", "Pizca de sal marina"],
+                desc: "Desayuno funcional equilibrado con ingredientes frescos y aporte óptimo de fibra y antioxidantes.",
+                ingredients: [
+                    "1 arepa integral de maíz (60 g)",
+                    "1 huevo (50 g)",
+                    "Aguacate: 50 g",
+                    "Espinaca fresca: 40 g",
+                    "Tomate: 50 g",
+                    "Aceite de oliva: 5 ml",
+                    "Pimienta y hierbas al gusto"
+                ],
                 steps: [
-                    "<b>Paso 1: Dorar la arepa.</b> Calienta la arepa integral en una sartén a fuego medio hasta que esté tostada.",
-                    "<b>Paso 2: Cocinar el huevo.</b> Prepara el huevo a la plancha conservando la yema tierna.",
-                    "<b>Paso 3: Armado final.</b> Coloca sobre la arepa la espinaca fresca, el huevo y las láminas de aguacate."
+                    "<b>Paso 1:</b> Calienta la arepa en plancha hasta que quede ligeramente dorada.",
+                    "<b>Paso 2:</b> Saltea la espinaca y el tomate con el aceite durante 2–3 minutos.",
+                    "<b>Paso 3:</b> Cocina el huevo a tu punto preferido.",
+                    "<b>Paso 4:</b> Sirve la arepa con aguacate, espinaca, tomate y huevo. Termina con pimienta y hierbas."
                 ]
             },
-            'avena_salada': {
+            'avena_salada_espinaca_huevo_aguacate_chia': {
                 title: "Avena salada con espinaca, huevo, aguacate y chía",
                 category: "Desayunos",
                 badgeClass: "badge-desayunos",
                 time: "15 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/desayunos/04-avena-salada.png",
-                desc: "Fibra soluble de avena combinada con micronutrientes oculares en una versión salada reconfortante.",
-                ingredients: ["1/3 taza de avena en hojuelas", "1 taza de caldo vegetal", "1 puñado de espinaca", "1 huevo", "1/4 de aguacate", "1 cdta de chía"],
+                desc: "Avena salada reconfortante con espinaca, huevo y chía para una energía sostenida.",
+                ingredients: [
+                    "Avena en hojuelas: 40 g",
+                    "Agua o leche sin azúcar: 180 ml",
+                    "Espinaca: 50 g",
+                    "1 huevo cocido",
+                    "Aguacate: 50 g",
+                    "Chía: 10 g",
+                    "Ajo: ½ diente"
+                ],
                 steps: [
-                    "<b>Paso 1: Cocinar base.</b> Hierve la avena en el caldo vegetal a fuego lento hasta espesar.",
-                    "<b>Paso 2: Integrar verde.</b> Agrega la espinaca picada y la chía, mezclando hasta que se integren.",
-                    "<b>Paso 3: Servir.</b> Coloca el huevo encima y corona con aguacate."
+                    "<b>Paso 1:</b> Cocina la avena con el líquido hasta obtener una textura cremosa.",
+                    "<b>Paso 2:</b> Añade la espinaca y el ajo durante los últimos 2 minutos.",
+                    "<b>Paso 3:</b> Sirve en un bowl y agrega el huevo en mitades y el aguacate.",
+                    "<b>Paso 4:</b> Termina con la chía y pimienta."
                 ]
             },
-            'pescado_lentejas': {
+            'arepa_frijol_huevo_aguacate_tomate': {
+                title: "Arepa con fríjol, huevo, aguacate y tomate",
+                category: "Desayunos",
+                badgeClass: "badge-desayunos",
+                time: "15 min",
+                portions: "1 porción",
+                img: "recetario-imagenes/desayunos/01-arepa-frijol-huevo.png",
+                desc: "Combinación tradicional de arepa y fríjoles con vegetales frescos y huevo.",
+                ingredients: [
+                    "Arepa de maíz: 60 g / 1 unidad",
+                    "Fríjol cocido: 80 g",
+                    "1 huevo",
+                    "Aguacate: 50 g",
+                    "Tomate: 50 g",
+                    "Cilantro: 5 g",
+                    "Aceite de oliva: 5 ml"
+                ],
+                steps: [
+                    "<b>Paso 1:</b> Calienta la arepa y el fríjol por separado.",
+                    "<b>Paso 2:</b> Prepara el huevo con el mínimo de aceite.",
+                    "<b>Paso 3:</b> Aplasta ligeramente el fríjol sobre la arepa.",
+                    "<b>Paso 4:</b> Agrega huevo, aguacate, tomate y cilantro."
+                ]
+            },
+            'arepa_rellena_huevo_espinaca_champinones': {
+                title: "Arepa rellena de huevo, espinaca y champiñones",
+                category: "Desayunos",
+                badgeClass: "badge-desayunos",
+                time: "15 min",
+                portions: "1 porción",
+                img: "recetario-imagenes/desayunos/02-arepa-rellena-espinaca.png",
+                desc: "Arepa integral generosamente rellena de vegetales salteados y huevo.",
+                ingredients: [
+                    "Arepa integral: 60 g",
+                    "Huevos: 2 unidades",
+                    "Espinaca: 40 g",
+                    "Champiñones: 60 g",
+                    "Aguacate: 40 g",
+                    "Aceite de oliva: 5 ml",
+                    "Pimienta al gusto"
+                ],
+                steps: [
+                    "<b>Paso 1:</b> Saltea champiñones y espinaca con el aceite.",
+                    "<b>Paso 2:</b> Bate los huevos, incorpóralos y cocina hasta cuajar.",
+                    "<b>Paso 3:</b> Abre la arepa caliente y rellena con la mezcla.",
+                    "<b>Paso 4:</b> Añade el aguacate en láminas y sirve."
+                ]
+            },
+            'pescado_lentejas_tomate_aguacate': {
                 title: "Pescado a la plancha con lentejas, tomate y aguacate",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
                 time: "25 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/01-pescado-lentejas.png",
-                desc: "Aporte masivo de ácidos grasos EPA/DHA combinados con legumbres de bajo índice glucémico y alto contenido de hierro y fibra.",
-                ingredients: ["1 filete de pescado blanco (150g)", "1 taza de lentejas cocidas", "1 tomate maduro en cubos", "1/4 de aguacate", "Aceite de oliva y limón"],
+                desc: "Pescado fresco a la plancha acompañado de una nutritiva mezcla de lentejas y vegetales.",
+                ingredients: [
+                    "Pescado: 150 g",
+                    "Lentejas cocidas: 120 g",
+                    "Aguacate: 60 g",
+                    "Tomate: 80 g",
+                    "Zanahoria: 50 g",
+                    "Aceite de oliva: 10 ml",
+                    "Limón: ½ unidad",
+                    "Hierbas al gusto"
+                ],
                 steps: [
-                    "<b>Paso 1: Preparar legumbres.</b> Mezcla las lentejas tibias con el tomate fresco, aceite de oliva y limón.",
-                    "<b>Paso 2: Sellar el pescado.</b> Cocina el filete a la plancha por 4 minutos cada lado hasta dorar.",
-                    "<b>Paso 3: Servir.</b> Dispone el pescado sobre la cama de lentejas y acompaña con el aguacate."
+                    "<b>Paso 1:</b> Sazona el pescado con limón, ajo y hierbas.",
+                    "<b>Paso 2:</b> Cocínalo a la plancha hasta que esté completamente hecho.",
+                    "<b>Paso 3:</b> Mezcla las lentejas con tomate, zanahoria y aguacate.",
+                    "<b>Paso 4:</b> Aliña con aceite de oliva, limón y hierbas y sirve junto al pescado."
                 ]
             },
-            'bowl_sardinas': {
+            'bowl_sardinas_arroz_integral_brocoli_zanahoria_aguacate': {
                 title: "Bowl de sardinas, arroz integral, brócoli, zanahoria y aguacate",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
                 time: "25 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/02-bowl-sardinas.png",
-                desc: "Nutrición completa rica en omegas y betacarotenos esenciales para la salud ocular.",
-                ingredients: ["1 lata de sardinas en aceite de oliva", "1/2 taza de arroz integral cocido", "1 taza de floretes de brócoli al vapor", "1/2 zanahoria rallada", "1/4 de aguacate"],
+                desc: "Bowl completo con sardinas, arroz integral y verduras al vapor.",
+                ingredients: [
+                    "Sardinas: 100–120 g",
+                    "Arroz integral cocido: 120 g",
+                    "Brócoli: 100 g",
+                    "Zanahoria: 70 g",
+                    "Aguacate: 60 g",
+                    "Aceite de oliva: 5 ml",
+                    "Limón: ½ unidad"
+                ],
                 steps: [
-                    "<b>Paso 1: Base de arroz.</b> Coloca el arroz integral caliente en un bol hondo.",
-                    "<b>Paso 2: Agregar vegetales.</b> Incorpora el brócoli al vapor y la zanahoria rallada.",
-                    "<b>Paso 3: Integrar sardinas.</b> Añade las sardinas limpias y decora con el aguacate."
+                    "<b>Paso 1:</b> Cocina o recalienta el arroz integral.",
+                    "<b>Paso 2:</b> Cocina brócoli y zanahoria al vapor hasta que estén tiernos pero firmes.",
+                    "<b>Paso 3:</b> Dispón el arroz en un bowl y agrega sardinas, verduras y aguacate.",
+                    "<b>Paso 4:</b> Termina con limón y aceite de oliva."
                 ]
             },
-            'trucha_garbanzos': {
+            'trucha_garbanzos_espinaca_tomate_aguacate': {
                 title: "Trucha con garbanzos, espinaca, tomate y aguacate",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
                 time: "25 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/03-trucha-garbanzos.png",
-                desc: "Pescado fresco de la región con legumbres y vegetales protectores de la visión.",
-                ingredients: ["1 filete de trucha", "1 taza de garbanzos cocidos", "1 taza de espinaca", "Tomate cherry", "1/4 de aguacate"],
+                desc: "Deliciosa trucha acompañada de garbanzos, espinaca fresca y aguacate.",
+                ingredients: [
+                    "Trucha: 150 g",
+                    "Garbanzos cocidos: 100 g",
+                    "Espinaca: 60 g",
+                    "Tomate: 80 g",
+                    "Aguacate: 60 g",
+                    "Aceite de oliva: 10 ml",
+                    "Limón: ½ unidad"
+                ],
                 steps: [
-                    "<b>Paso 1: Asar trucha.</b> Cocina la trucha a la plancha con hierbas al gusto.",
-                    "<b>Paso 2: Preparar ensalada.</b> Mezcla los garbanzos, la espinaca y los tomates cherry con aceite de oliva.",
-                    "<b>Paso 3: Emplatar.</b> Sirve la trucha junto con la ensalada de garbanzos y aguacate."
+                    "<b>Paso 1:</b> Sazona la trucha y cocínala a la plancha.",
+                    "<b>Paso 2:</b> Saltea la espinaca brevemente.",
+                    "<b>Paso 3:</b> Mezcla garbanzos, tomate y aguacate.",
+                    "<b>Paso 4:</b> Sirve la trucha sobre la mezcla y añade limón y aceite de oliva."
                 ]
             },
-            'pimenton_relleno': {
+            'pimenton_relleno_salmon_lentejas': {
                 title: "Pimentón relleno de salmón y lentejas",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
-                time: "30 min",
+                time: "35 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/04-pimenton-relleno.png",
-                desc: "Antioxidantes del pimentón combinados con salmón y lentejas en un plato elegante y funcional.",
-                ingredients: ["1 pimentón rojo grande", "100g de salmón desmenuzado", "1/2 taza de lentejas cocidas", "Especias al gusto"],
+                desc: "Pimentón rojo al horno relleno de salmón desmenuzado y lentejas.",
+                ingredients: [
+                    "Pimentón rojo grande: 1 unidad / 180 g",
+                    "Salmón: 120 g",
+                    "Lentejas cocidas: 100 g",
+                    "Cebolla: 30 g",
+                    "Tomate: 50 g",
+                    "Perejil: 5 g",
+                    "Aceite de oliva: 5 ml"
+                ],
                 steps: [
-                    "<b>Paso 1: Preparar pimentón.</b> Corta la parte superior del pimentón, retira las semillas y ásalo ligeramente.",
-                    "<b>Paso 2: Rellenar.</b> Mezcla el salmón con las lentejas y rellena el pimentón.",
-                    "<b>Paso 3: Hornear.</b> Lleva al horno a 180°C durante 15 minutos hasta cocinar por completo."
+                    "<b>Paso 1:</b> Parte el pimentón y retira las semillas.",
+                    "<b>Paso 2:</b> Saltea cebolla y tomate; incorpora las lentejas y el salmón desmenuzado.",
+                    "<b>Paso 3:</b> Rellena el pimentón y hornea a 180 °C durante 20–25 minutos.",
+                    "<b>Paso 4:</b> Termina con perejil fresco y sirve."
                 ]
             },
-            'tortilla_espinaca': {
+            'tortilla_espinaca_champinones_ensalada_aguacate': {
                 title: "Tortilla de espinaca y champiñones con ensalada de aguacate",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
-                time: "15 min",
+                time: "20 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/05-tortilla-espinaca.png",
-                desc: "Ligera, proteica y excelente para una cena de fácil digestión.",
-                ingredients: ["2 huevos frescos", "1 taza de espinaca picada", "Champiñones laminados", "1/4 de aguacate y tomate"],
+                desc: "Tortilla ligera de huevos con espinaca y champiñones, servida con ensalada.",
+                ingredients: [
+                    "Huevos: 2 unidades",
+                    "Espinaca: 60 g",
+                    "Champiñones: 80 g",
+                    "Tomate: 80 g",
+                    "Aguacate: 60 g",
+                    "Aceite de oliva: 5 ml",
+                    "Limón: ½ unidad"
+                ],
                 steps: [
-                    "<b>Paso 1: Saltear vegetales.</b> Sofríe los champiñones y la espinaca brevemente.",
-                    "<b>Paso 2: Hacer tortilla.</b> Bate los huevos, agrégalos a los vegetales en la sartén y cocina ambos lados.",
-                    "<b>Paso 3: Servir.</b> Acompaña con ensalada fresca de aguacate y tomate."
+                    "<b>Paso 1:</b> Saltea champiñones y espinaca.",
+                    "<b>Paso 2:</b> Agrega los huevos batidos y cocina la tortilla a fuego medio.",
+                    "<b>Paso 3:</b> Mezcla tomate y aguacate con limón.",
+                    "<b>Paso 4:</b> Sirve la tortilla acompañada de la ensalada."
                 ]
             },
-            'guiso_lentejas': {
+            'guiso_lentejas_garbanzos_verduras_arepa_integral': {
                 title: "Guiso de lentejas, garbanzos y verduras con arepa integral",
                 category: "Almuerzos o Cenas",
                 badgeClass: "badge-almuerzos",
                 time: "30 min",
                 portions: "1 porción",
                 img: "recetario-imagenes/almuerzos-cenas/06-guiso-lentejas.png",
-                desc: "Plato fuerte tradicional adaptado con doble leguminosa y vegetales para máxima nutrición.",
-                ingredients: ["1/2 taza de lentejas cocidas", "1/2 taza de garbanzos cocidos", "Zanahoria y zucchini picados", "1 arepa integral"],
+                desc: "Guiso sustancioso de legumbres y verduras acompañado de arepa integral.",
+                ingredients: [
+                    "Lentejas cocidas: 80 g",
+                    "Garbanzos cocidos: 80 g",
+                    "Espinaca: 50 g",
+                    "Zanahoria: 60 g",
+                    "Tomate: 80 g",
+                    "Arepa integral: 60 g",
+                    "Aceite de oliva: 5 ml"
+                ],
                 steps: [
-                    "<b>Paso 1: Sofreír verduras.</b> Cocina los vegetales picados en una sartén con aceite de oliva.",
-                    "<b>Paso 2: Integrar legumbres.</b> Añade las lentejas y garbanzos con un poco de caldo vegetal y hierve por 10 minutos.",
-                    "<b>Paso 3: Servir.</b> Disfruta caliente acompañado de la arepa integral."
+                    "<b>Paso 1:</b> Sofríe suavemente tomate y zanahoria con el aceite.",
+                    "<b>Paso 2:</b> Agrega lentejas y garbanzos con un poco de agua y cocina 10 minutos.",
+                    "<b>Paso 3:</b> Incorpora la espinaca al final.",
+                    "<b>Paso 4:</b> Sirve con la arepa integral caliente."
                 ]
             },
-            'pudin_chia': {
+            'parfait_guayaba_yogur_natural_chia_nueces': {
                 title: "Parfait de guayaba, yogur natural, chía y nueces",
                 category: "Postres",
                 badgeClass: "badge-postres",
-                time: "10 min",
+                time: "10 min + frío",
                 portions: "1 porción",
                 img: "recetario-imagenes/postres/01-parfait-guayaba.png",
-                desc: "Postre funcional rico en antioxidantes naturales y grasas buenas sin azúcares refinados añadidos.",
-                ingredients: ["1 taza de yogur griego natural sin azúcar", "2 cdas de semillas de chía", "1/2 taza de pulpa o puré de guayaba", "1 cda de nueces picadas"],
+                desc: "Parfait saludable en capas con guayaba, yogur, chía y nueces.",
+                ingredients: [
+                    "Guayaba: 100 g",
+                    "Yogur natural sin azúcar: 150 g",
+                    "Chía: 10 g",
+                    "Nueces: 15 g",
+                    "Canela: 1 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Hidratar.</b> Mezcla el yogur con la chía y deja reposar 5 minutos.",
-                    "<b>Paso 2: Armar capas.</b> Alterna en un vaso capas de yogur y puré de guayaba natural.",
-                    "<b>Paso 3: Decorar.</b> Espolvorea las nueces picadas por encima."
+                    "<b>Paso 1:</b> Tritura o corta la guayaba.",
+                    "<b>Paso 2:</b> Mezcla el yogur con la chía y deja reposar 10 minutos.",
+                    "<b>Paso 3:</b> Alterna capas de yogur y guayaba en un vaso.",
+                    "<b>Paso 4:</b> Termina con nueces picadas y canela; refrigera 30 minutos."
                 ]
             },
-            'mousse_aguacate': {
+            'mousse_aguacate_cacao': {
                 title: "Mousse de aguacate y cacao",
                 category: "Postres",
                 badgeClass: "badge-postres",
                 time: "10 min",
-                portions: "1 porción",
+                portions: "2 porciones",
                 img: "recetario-imagenes/postres/02-mousse-aguacate.png",
-                desc: "Grasas saludables de aguacate combinadas con cacao puro para un postre cremoso y funcional.",
-                ingredients: ["1 aguacate Hass maduro", "2 cdas de cacao puro en polvo", "2 cdas de miel o edulcorante natural", "Un chorrito de bebida vegetal"],
+                desc: "Mousse cremoso y saludable a base de aguacate maduro y cacao puro.",
+                ingredients: [
+                    "Aguacate maduro: 150 g",
+                    "Cacao sin azúcar: 15 g",
+                    "Yogur natural: 80 g",
+                    "Canela: 1 g",
+                    "Vainilla: 2 ml",
+                    "Nueces picadas: 10 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Licuar o procesar.</b> Coloca la pulpa de aguacate, el cacao, el endulzante y la bebida vegetal en la procesadora.",
-                    "<b>Paso 2: Mezclar.</b> Procesa hasta obtener una crema suave y homogénea.",
-                    "<b>Paso 3: Refrigerar.</b> Sirve frío y decora al gusto."
+                    "<b>Paso 1:</b> Procesa aguacate, cacao, yogur, canela y vainilla hasta obtener una crema lisa.",
+                    "<b>Paso 2:</b> Prueba y ajusta la textura con una cucharada de agua si es necesario.",
+                    "<b>Paso 3:</b> Refrigera 30 minutos.",
+                    "<b>Paso 4:</b> Sirve con nueces por encima."
                 ]
             },
-            'bocaditos_zanahoria': {
+            'bocaditos_zanahoria_avena_nueces': {
                 title: "Bocaditos de zanahoria, avena y nueces",
                 category: "Postres",
                 badgeClass: "badge-postres",
                 time: "20 min",
-                portions: "1 porción",
+                portions: "8 unidades",
                 img: "recetario-imagenes/postres/03-bocaditos-zanahoria.png",
-                desc: "Snacks dulces naturales con betacarotenos, avena y nueces.",
-                ingredients: ["1 zanahoria rallada fina", "1/2 taza de avena en hojuelas", "Nueces picadas", "Canela en polvo"],
+                desc: "Bocaditos energéticos sin horno con zanahoria, avena y coco.",
+                ingredients: [
+                    "Zanahoria rallada: 100 g",
+                    "Avena: 80 g",
+                    "Nueces: 30 g",
+                    "Coco rallado sin azúcar: 20 g",
+                    "Canela: 2 g",
+                    "Yogur natural: 30 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Mezclar ingredientes.</b> Combina la zanahoria rallada, la avena, las nueces y la canela.",
-                    "<b>Paso 2: Formar bolitas.</b> Compacta la mezcla formando pequeños bocaditos con las manos.",
-                    "<b>Paso 3: Reposar.</b> Refrigera antes de consumir para que mantengan su forma."
+                    "<b>Paso 1:</b> Tritura parcialmente la avena y las nueces.",
+                    "<b>Paso 2:</b> Mezcla con zanahoria, coco, canela y yogur hasta formar una masa moldeable.",
+                    "<b>Paso 3:</b> Forma 8 bolitas.",
+                    "<b>Paso 4:</b> Refrigera 30–60 minutos antes de servir."
                 ]
             },
-            'batido_guayaba': {
+            'batido_guayaba_espinaca_yogur_chia': {
                 title: "Batido de guayaba, espinaca, yogur y chía",
                 category: "Bebidas",
                 badgeClass: "badge-bebidas",
                 time: "5 min",
-                portions: "1 vaso",
+                portions: "1 porción",
                 img: "recetario-imagenes/bebidas/01-batido-guayaba.png",
-                desc: "Bebida revitalizante con alta concentración de vitamina C biodisponible y clorofila.",
-                ingredients: ["1 guayaba madura troceada", "1 puñado de espinaca fresca", "1/2 taza de yogur natural", "1 cdta de chía"],
+                desc: "Batido nutritivo y refrescante de guayaba con espinaca y yogur.",
+                ingredients: [
+                    "Guayaba: 120 g",
+                    "Espinaca: 30 g",
+                    "Yogur natural: 100 g",
+                    "Agua: 150 ml",
+                    "Chía: 10 g",
+                    "Hielo: 50 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Licuar base.</b> Agrega la guayaba, la espinaca y el yogur a la licuadora.",
-                    "<b>Paso 2: Procesar.</b> Licúa hasta obtener una textura suave.",
-                    "<b>Paso 3: Servir.</b> Vierte en un vaso e incorpora la chía removiendo suavemente."
+                    "<b>Paso 1:</b> Lava y trocea la guayaba.",
+                    "<b>Paso 2:</b> Licúa guayaba, espinaca, yogur y agua.",
+                    "<b>Paso 3:</b> Añade chía e hielo y licúa brevemente.",
+                    "<b>Paso 4:</b> Sirve de inmediato; no requiere azúcar añadida."
                 ]
             },
-            'batido_zanahoria': {
+            'batido_zanahoria_citrico_jengibre': {
                 title: "Batido de zanahoria, cítrico y jengibre",
                 category: "Bebidas",
                 badgeClass: "badge-bebidas",
                 time: "5 min",
-                portions: "1 vaso",
+                portions: "1 porción",
                 img: "recetario-imagenes/bebidas/02-batido- zanahoria-jengibre.png",
-                desc: "Vitamina A y antioxidantes para potenciar la agudeza visual.",
-                ingredients: ["1 zanahoria mediana", "Jugo de 2 naranjas o mandarinas", "Un toque de jengibre rallado"],
+                desc: "Batido vigorizante de zanahoria, naranja y un toque de jengibre.",
+                ingredients: [
+                    "Zanahoria: 100 g",
+                    "Naranja: 120 g",
+                    "Agua: 120 ml",
+                    "Jengibre fresco: 5 g",
+                    "Hielo: 50 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Procesar.</b> Licúa la zanahoria troceada junto con el jugo cítrico y el jengibre.",
-                    "<b>Paso 2: Colar opcional.</b> Pasa por un colador si prefieres una textura más ligera.",
-                    "<b>Paso 3: Servir.</b> Disfruta recién hecho."
+                    "<b>Paso 1:</b> Pela y trocea la zanahoria y la naranja.",
+                    "<b>Paso 2:</b> Licúa con agua y jengibre.",
+                    "<b>Paso 3:</b> Agrega hielo y procesa hasta integrar.",
+                    "<b>Paso 4:</b> Sirve inmediatamente, sin azúcar añadida."
                 ]
             },
-            'bebida_cremosa': {
+            'bebida_cremosa_aguacate_cacao_chia': {
                 title: "Bebida cremosa de aguacate, cacao y chía",
                 category: "Bebidas",
                 badgeClass: "badge-bebidas",
                 time: "5 min",
-                portions: "1 vaso",
+                portions: "1 porción",
                 img: "recetario-imagenes/bebidas/03-bebida-cremosa-aguacate.png",
-                desc: "Textura sedosa rica en grasas saludables, cacao y antioxidantes.",
-                ingredients: ["1/4 de aguacate Hass", "1 cda de cacao puro", "1 taza de bebida de almendras", "1 cdta de chía"],
+                desc: "Bebida suave y cremosa con aguacate, cacao puro y chía.",
+                ingredients: [
+                    "Aguacate: 70 g",
+                    "Leche sin azúcar: 200 ml",
+                    "Cacao sin azúcar: 10 g",
+                    "Chía: 8 g",
+                    "Canela: 1 g",
+                    "Hielo: 50 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Licuado.</b> Procesa el aguacate, el cacao y la bebida de almendras hasta lograr una mezcla cremosa.",
-                    "<b>Paso 2: Integrar chía.</b> Vierte en el vaso y añade la chía.",
-                    "<b>Paso 3: Servir.</b> Toma frío."
+                    "<b>Paso 1:</b> Coloca todos los ingredientes en la licuadora.",
+                    "<b>Paso 2:</b> Procesa hasta lograr una textura cremosa.",
+                    "<b>Paso 3:</b> Ajusta con agua si deseas una bebida más ligera.",
+                    "<b>Paso 4:</b> Sirve fría."
                 ]
             },
-            'agua_fresca': {
+            'agua_fresca_pepino_limon_espinaca_hierbabuena': {
                 title: "Agua fresca de pepino, limón, espinaca y hierbabuena",
                 category: "Bebidas",
                 badgeClass: "badge-bebidas",
                 time: "5 min",
-                portions: "1 jarra",
+                portions: "1 porción",
                 img: "recetario-imagenes/bebidas/04-agua-fresca-pepino.png",
-                desc: "Refrescante, hidratante y depurativa para consumir durante todo el día.",
-                ingredients: ["1/2 pepino en rodajas", "Jugo de 1 limón", "1 puñado de espinaca", "Hojas de hierbabuena fresca", "1 litro de agua"],
+                desc: "Agua fresca desintoxicante con pepino, limón, espinaca y hierbabuena.",
+                ingredients: [
+                    "Pepino: 100 g",
+                    "Agua: 250 ml",
+                    "Limón: 20 ml",
+                    "Espinaca: 20 g",
+                    "Hierbabuena: 5 g",
+                    "Hielo: 50 g"
+                ],
                 steps: [
-                    "<b>Paso 1: Licuar elementos.</b> Licúa el pepino, la espinaca y la hierbabuena con un poco de agua.",
-                    "<b>Paso 2: Mezclar.</b> Agrega el resto del agua y el jugo de limón.",
-                    "<b>Paso 3: Servir.</b> Cuela si lo deseas y sirve bien frío con hielo."
+                    "<b>Paso 1:</b> Lava el pepino, la espinaca y la hierbabuena.",
+                    "<b>Paso 2:</b> Licúa brevemente con el agua y cuela solo si prefieres una textura más ligera.",
+                    "<b>Paso 3:</b> Añade limón e hielo.",
+                    "<b>Paso 4:</b> Sirve sin azúcar."
                 ]
             }
         };
